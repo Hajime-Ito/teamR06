@@ -20,6 +20,7 @@
      - Authentication,RealtimeDatabase,CloudStorageを使用
      - Express
      - moment.js moment-timezone
+     - body-parser
 
 - クライアントサイド
      - フロント：Xamarin.Forms
