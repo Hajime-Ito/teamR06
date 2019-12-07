@@ -19,16 +19,17 @@
 
 ### 利用したフレームワーク・ライブラリ
 - サーバーサイド
- - FirebaseのcloudfunctionをAPIサーバーに見立てて開発
- - Authentication,RealtimeDatabase,CloudStorageを使用
- - Express
- - moment.js moment-timezone
+     - FirebaseのcloudfunctionをAPIサーバーに見立てて開発
+     - Authentication,RealtimeDatabase,CloudStorageを使用
+     - Express
+     - moment.js moment-timezone
+
 - クライアントサイド
- - フロント：Xamarin.Forms
- - バック：.Net Core, Xamarin
- - ASP.NET Core
- - Geolocator
- - Xamarin.Forms.GoogleMaps
+     - フロント：Xamarin.Forms
+     - バック：.Net Core, Xamarin
+     - ASP.NET Core
+     - Geolocator
+     - Xamarin.Forms.GoogleMaps
 
 ### その他開発に使用したツール
 - Visual Studio
