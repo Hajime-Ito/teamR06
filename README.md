@@ -14,20 +14,33 @@
 ## 開発技術
 
 ### 利用したプログラミング言語
-- Python
-- JavaScript
+- C#
+- Node.js
 
 ### 利用したフレームワーク・ライブラリ
-- React
-- superagent
+- サーバーサイド
+ - FirebaseのcloudfunctionをAPIサーバーに見立てて開発
+ - Authentication,RealtimeDatabase,CloudStorageを使用
+ - Express
+ - moment.js moment-timezone
+- クライアントサイド
+ - フロント：Xamarin.Forms
+ - バック：.Net Core, Xamarin
+ - ASP.NET Core
+ - Geolocator
+ - Xamarin.Forms.GoogleMaps
 
 ### その他開発に使用したツール
-- Arduino
-- サーボモータ
+- Visual Studio
+- justinmind prototyper
 
 ## 役割分担
-- 永井陽太(サーバ)
-- 横山新(クライアント)
+- 伊藤　壱(サーバ)
+- 原田　裕斗(デザイン)
+- 小林浩也(クライアント)
+- 山田順平(クライアント)
+- 原田理央(UIデザイン)
+- 齊藤 悠仁(クライアント)
 
 ## チーム目標
 
