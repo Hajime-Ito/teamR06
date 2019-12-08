@@ -566,25 +566,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\b1019019\\.nuget\\packages\\": {},
+    "C:\\Users\\Hiro\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
+      "projectUniqueName": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
       "projectName": "cliant",
-      "projectPath": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
-      "packagesPath": "C:\\Users\\b1019019\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\obj\\",
+      "projectPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
+      "packagesPath": "C:\\Users\\Hiro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\b1019019\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hiro\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],

@@ -1932,24 +1932,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\b1019019\\.nuget\\packages\\": {},
+    "C:\\Users\\Hiro\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
       "projectName": "cliant.Android",
-      "projectPath": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
-      "packagesPath": "C:\\Users\\b1019019\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\obj\\",
+      "projectPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
+      "packagesPath": "C:\\Users\\Hiro\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\b1019019\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Hiro\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1963,8 +1963,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {
-              "projectPath": "C:\\Users\\b1019019\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj"
+            "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {
+              "projectPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj"
             }
           }
         }
