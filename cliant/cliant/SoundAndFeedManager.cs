@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Plugin.SimpleAudioPlayer;
 using Xamarin.Essentials;
 
 namespace cliant
 {
-    /// <summary>
-    /// soundエフェクトの種類を表す列挙型
-    /// </summary>
-    enum SEType
-    {
-    }
-
     /// <summary>
     /// 音声と振動をサポートするクラス
     /// </summary>
@@ -23,19 +15,7 @@ namespace cliant
         readonly ISimpleAudioPlayer[] players;
         bool playBgm = false;
 
-        static readonly string[] bgmFile =
-        {
-        };
-
-        static readonly double[] BGM_REACH =
-        {
-        };
-
         const double BGM_SPEED = 1.0;
-
-        Dictionary<SEType, string> seFileDic = new Dictionary<SEType, string>()
-        {
-        };
 
         /// <summary>
         /// 全てのBGMを再生/停止します。
@@ -78,7 +58,7 @@ namespace cliant
         /// </summary>
         public SoundAndFeedManager()
         {
-            players = bgmFile.Select((fileName) =>
+            players = BGMFiles.NAME.Select((fileName) =>
             {
                 var p = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
 
@@ -115,7 +95,7 @@ namespace cliant
             {
                 var p = players[i];
 
-                p.Volume = Math.Max(0.0, BGM_SPEED * (BGM_REACH[i] - d));
+                p.Volume = Math.Max(0.0, BGM_SPEED * (BGMFiles.REACH[i] - d));
                 p.Volume = Math.Min(p.Volume, 1.0);
             }
         }
@@ -129,7 +109,7 @@ namespace cliant
         {
             var p = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
 
-            using (var stream = typeof(App).Assembly.GetManifestResourceStream($"XFSimpleAudio.Resources.{seFileDic[seType]}"))
+            using (var stream = typeof(App).Assembly.GetManifestResourceStream($"XFSimpleAudio.Resources.{SEFiles.GetName(seType)}"))
             {
                 p.Load(stream);
             }
