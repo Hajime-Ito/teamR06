@@ -4060,11 +4060,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
       "projectName": "cliant.Android",
-      "projectPath": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
+      "projectPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\cliant.Android.csproj",
       "packagesPath": "C:\\Users\\Hiro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\obj\\",
+      "outputPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -4085,8 +4085,8 @@
       "frameworks": {
         "monoandroid90": {
           "projectReferences": {
-            "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {
-              "projectPath": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj"
+            "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {
+              "projectPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj"
             }
           }
         }

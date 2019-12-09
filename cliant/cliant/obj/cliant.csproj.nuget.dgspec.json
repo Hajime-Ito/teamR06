@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {}
+    "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {
+    "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
+        "projectUniqueName": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
         "projectName": "cliant",
-        "projectPath": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
+        "projectPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
         "packagesPath": "C:\\Users\\Hiro\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Hiro\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\obj\\",
+        "outputPath": "C:\\Users\\Hiro\\Source\\Repos\\p2hacks\\teamR06\\cliant\\cliant\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
