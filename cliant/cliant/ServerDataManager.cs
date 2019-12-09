@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace cliant
 {
-    static class SerberDataManager
+    static class ServerDataManager
     {
         public static HttpClient HttpClient { get; private set; } = new HttpClient();
 
