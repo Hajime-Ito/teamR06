@@ -6,6 +6,13 @@ using Plugin.SimpleAudioPlayer;
 namespace cliant
 {
     /// <summary>
+    /// soundエフェクトの種類を表す列挙型
+    /// </summary>
+    enum SEType
+    {
+    }
+
+    /// <summary>
     /// 音声と振動をサポートするクラス
     /// </summary>
     class SoundAndFeedManager
@@ -14,23 +21,19 @@ namespace cliant
         readonly ISimpleAudioPlayer[] players;
         bool playBgm = false;
 
-        string[] bgmFile =
+        static readonly string[] bgmFile =
         {
-            "",
-            "",
-            "",
-            ""
         };
 
         static readonly double[] BGM_REACH =
         {
-            0.1,
-            0.5,
-            1.0,
-            10
         };
 
         const double BGM_SPEED = 1.0;
+
+        Dictionary<SEType, string> seFileDic = new Dictionary<SEType, string>()
+        {
+        };
 
         /// <summary>
         /// 全てのBGMを再生/停止します。
@@ -103,6 +106,24 @@ namespace cliant
                 p.Volume = Math.Max(0.0, BGM_SPEED * (BGM_REACH[i] - d));
                 p.Volume = Math.Min(p.Volume, 1.0);
             }
+        }
+
+        /// <summary>
+        /// <paramref name="seType"/>で指定したSEを<paramref name="volume"/>で指定された音量で再生します。
+        /// </summary>
+        /// <param name="seType"></param>
+        /// <param name="volume"></param>
+        public void PlaySE(SEType seType, double volume = 1.0)
+        {
+            var p = CrossSimpleAudioPlayer.CreateSimpleAudioPlayer();
+
+            using (var stream = typeof(App).Assembly.GetManifestResourceStream($"XFSimpleAudio.Resources.{seFileDic[seType]}"))
+            {
+                p.Load(stream);
+            }
+
+            p.Volume = volume;
+            p.Play();
         }
     }
 }
