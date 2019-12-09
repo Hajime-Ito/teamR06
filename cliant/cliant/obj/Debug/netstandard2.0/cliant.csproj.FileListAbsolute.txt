@@ -22,3 +22,4 @@ C:\Users\Hiro\Source\Repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.
 C:\Users\Hiro\Source\Repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\cliant.dll
 C:\Users\Hiro\Source\Repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\ref\cliant.dll
 C:\Users\Hiro\Source\Repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\cliant.pdb
+C:\Users\Hiro\Source\Repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XamlC.stamp
