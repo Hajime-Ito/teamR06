@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Plugin.SimpleAudioPlayer;
+using Xamarin.Essentials;
 
 namespace cliant
 {
@@ -17,6 +18,7 @@ namespace cliant
     /// </summary>
     class SoundAndFeedManager
     {
+        public bool CanVibrate { get; }
 
         readonly ISimpleAudioPlayer[] players;
         bool playBgm = false;
@@ -89,6 +91,16 @@ namespace cliant
 
                 return p;
             }).ToArray();
+
+            try
+            {
+                Vibration.Cancel();
+                CanVibrate = true;
+            }
+            catch (FeatureNotSupportedException)
+            {
+                CanVibrate = false;
+            }
         }
 
         /// <summary>
@@ -124,6 +136,22 @@ namespace cliant
 
             p.Volume = volume;
             p.Play();
+        }
+
+        public void Viberate(double ms = 500.0)
+        {
+            if (CanVibrate)
+            {
+                Vibration.Vibrate(ms);
+            }
+        }
+
+        public void ViberateCancel()
+        {
+            if (CanVibrate)
+            {
+                Vibration.Cancel();
+            }
         }
     }
 }
