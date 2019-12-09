@@ -95,7 +95,8 @@ namespace cliant
             {
                 var p = players[i];
 
-                p.Volume = Math.Max(0.0, BGM_SPEED * (BGMFiles.REACH[i] - d));
+                p.Volume += (BGM_SPEED * (BGMFiles.REACH[i] - d) - p.Volume) * 0.5;
+                p.Volume = Math.Max(p.Volume, 0.0);
                 p.Volume = Math.Min(p.Volume, 1.0);
             }
         }
