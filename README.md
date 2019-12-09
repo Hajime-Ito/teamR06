@@ -17,7 +17,7 @@
 ### 利用したフレームワーク・ライブラリ
 - サーバーサイド
      - FirebaseのcloudfunctionをAPIサーバーに見立てて開発
-     - Authentication,RealtimeDatabase,CloudStorageを使用
+     - Authentication,RealtimeDatabaseを使用
      - Express
      - moment.js moment-timezone
      - body-parser
@@ -32,6 +32,9 @@
 ### その他開発に使用したツール
 - Visual Studio
 - justinmind prototyper
+- curl
+- Node.js command prompt
+- gitbash
 
 ## 役割分担
 - 伊藤　壱(サーバ)
@@ -50,8 +53,6 @@
 - nn%
 
 ### 達成度の根拠
-- 初めて挑戦したJavsScriptの特徴や扱いにくい部分について知ることができたため
-- なんとかデモはできたが，機能XXの実装は間に合わなかったから
 
 ## 個人目標と達成度
 
