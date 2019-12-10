@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 
 const router = express.Router()
 
-let objects = [] // JSONを返す際の連想配列
+let objects = [] // JSONを返す際の連想配列を格納する配列
 
 // middleware that is specific to this router
 router.use(function Auth(req, res, next) {
@@ -49,10 +49,9 @@ router.route('/')
         }
         */
 
-        //TreeKey
         const ref = db.ref("/Tree")
         try {
-            // ボディからTreeKeyを取得
+
             const reqlocationX = req.body.locationX
             const reqlocationY = req.body.locationY
             const reqdistance = req.body.distance //一定距離
@@ -78,7 +77,7 @@ router.route('/')
                             "TreeKey": TreeKey,
                         }
                         objects.push(snap)
-                        console.log(JSON.stringify(objects))
+                        //console.log(JSON.stringify(objects))
                     })
                 }
             })
@@ -88,7 +87,7 @@ router.route('/')
         } catch (error) { res.send("error") }
     })
 
-    // Treeを作成する
+    // 新しくTreeを作成する(この後TreePotすることを想定)
     .post((req, res) => {
         /*
         curlコマンド
@@ -101,8 +100,9 @@ router.route('/')
         }
         */
         try {
-            const ref = db.ref("/Tree")
+            let ref = db.ref("/Tree")
             const TreeKey = ref.push().key
+            const MyTreeKey = db.ref("/Account").push().key
 
             // Databaseに保存
             ref.child(TreeKey).set({
@@ -112,7 +112,17 @@ router.route('/')
                 point: 0,
                 TreeKey: TreeKey,
             })
-            res.send("success")
+
+            ref = db.ref("/Account").child(MyTreeKey)
+            ref.set({
+                TreeKey: MyTreeKey
+            })
+
+            const obj = {
+                "TreeKey": TreeKey
+            }
+            const json = JSON.stringify(obj)
+            res.send(json)
         } catch (error) {
             res.send("error")
         }
