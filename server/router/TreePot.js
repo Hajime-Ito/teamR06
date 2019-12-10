@@ -38,10 +38,10 @@ router.use(function Auth(req, res, next) {
 
 router.route('/')
 
-    // 過去にuserの作成したTreePot,TreeのTreeKeyを返す
+    // 過去にuserの作成したTreePot,TreeのTreeKey,location,近いかどうかを返す
     .get((req, res) => {
         /*
-        JSON
+        REQ JSON
         {
         pid: "XXXX"
         locationX: "XXXX"
@@ -54,18 +54,30 @@ router.route('/')
             const reqlocationY = req.body.locationY
             const reqdistance = req.body.distance //一定距離
             const pid = req.body.pid
-
+            //自分の作成したTreePotのパス
             let ref = db.ref('/Tree').orderByChild("owner").equalTo(pid)
             // 一定距離内のTreePot情報を格納する
             ref.once('value', (snapshot) => {
                 const locationX = snapshot.val().locationX
                 const locationY = snapshot.val().locationY
                 const TreeKey = snapshot.val().TreeKey
+
                 if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
+                    //一定距離の中に入っている自分の作成したTreePot
                     const snap = {
                         "TreeKey": TreeKey,
                         "locationX": locationX,
-                        "locationY": locationY
+                        "locationY": locationY,
+                        "isNear": true
+                    }
+                    objects.push(snap)
+                } else {
+                    //一定距離の中に入っていない自分の作成したTreePot
+                    const snap = {
+                        "TreeKey": TreeKey,
+                        "locationX": locationX,
+                        "locationY": locationY,
+                        "isNear": false
                     }
                     objects.push(snap)
                 }
@@ -79,6 +91,7 @@ router.route('/')
     // TreePotを作成
     .post((req, res) => {
         /*
+        REQ JSON
         {
         locationX: "XXXX"
         locationY: "XXXX"
@@ -102,11 +115,31 @@ router.route('/')
 
     })
 
+    // TreePotのSessionを切る
+    .delete((req, res) => {
+        /*
+        REQ JSON
+        {
+        TreeKey: "XXXX"
+        }
+        */
+
+        const TreeKey = req.body.TreeKey
+        const ref = db.ref('/TreePot')
+        try {
+            //TreePotのデータを削除
+            ref.child(TreeKey).remove()
+            res.send("success")
+        } catch (error) {
+            res.send("error")
+        }
+    })
+
 router.route('/view')
     // 一定距離内のTreePotを返す
     .get((req, res) => {
         /*
-        JSON
+        REQ JSON
         {
         locationX: "XXXX"
         locationY: "XXXX"

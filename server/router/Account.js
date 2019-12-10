@@ -37,7 +37,7 @@ router.route('/')
     // pidを生成し書き込みpidを返す
     .get((req, res) => {
         /*
-        JSON
+        REQ JSON
         {
         uid: "XXXX"
         }
@@ -62,7 +62,7 @@ router.route('/')
     // 自分の位置を書き込む
     .post((req, res) => {
         /*
-        JSON
+        REQ JSON
         {
         locationX: "XXXX"
         locationY: "XXXX"

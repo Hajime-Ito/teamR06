@@ -41,7 +41,7 @@ router.route('/')
     //TreeKey Map表示のためにGET
     .get((req, res) => {
         /*
-        JSON
+        REQ JSON
         {
         locationX: "XXXX"
         locationY: "XXXX"
@@ -92,7 +92,7 @@ router.route('/')
         /*
         curlコマンド
         curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d "{\"owner\":\"email@email.com\",\"locationY\":\"app123\",\"locationX\":\"app123\"}"  http://localhost:5000/Tree
-        JSON
+        REQ JSON
         {
         "owner":"XXXX",
         "locationY":"XXXX",
@@ -133,7 +133,7 @@ router.route('/')
         /*
         curlコマンド
         curl -v -H "Accept: application/json" -H "Content-type: application/json" -X PUT -d "{\"TreeKey\":\"-LvgCz6vFmgQDLvD5axv\"}"  http://localhost:5000/Tree
-        JSON
+        REQ JSON
         {
         TreeKey: "XXXX"
         }
