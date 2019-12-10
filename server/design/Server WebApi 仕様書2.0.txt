@@ -1,0 +1,48 @@
+/*
+12/10 Hajime, Server側から今の段階で提示できること
+*/
+
+Server WebApi 仕様書2.0
+
+書式：　戻り値 関数名(引数)
+
+!# Serverが必要だと思う関数
+
+   定義*客観的TreePot情報(Map表示のために必要なTreePot情報)
+   定義*主観的TreePot情報(自分が作成したTreePotを再接続するときに必要な情報)   
+   定義*セッション関数とは植木鉢を追加関数と同じ
+   
+   木を作成する関数(POST) /Tree POST
+   主観的TreePot情報のリクエスト関数(GET) /TreePot GET
+   主観的TreePotのセッション情報削除リクエスト関数(DELETE) /TreePot DELETE
+   植木鉢(TreePot)を追加に関しては、
+   TreePotの再セッション関数(ただのセッション関数からなる)(POST)と
+   新規セッション関数(木を作成する関数とセッション関数からなる)(POST, POST)が必要
+
+# Upload
+
+   //ユーザの情報をアップロード
+   void User(locationX, locationY, pid) /Account POST
+   //デコレーション追加
+   void NewDecoration(TreeKey,kind,posX,posY,message)
+   //植木鉢を追加
+   void NewTreePotOwner(pid) /TreePot POST
+   //植木鉢を育てる
+   void GrowPotSpot(TreeKey) /Tree PUT
+
+# DownLoad
+
+   //匿名認証、これだけファイアベースから直に取得
+   uid GetUid() //Nul
+   //uidからpidを取得
+   pid GetPid(uid) /Account GET
+   //現在位置から、一定距離内のTreePotのリストを取得 
+   ({TreeKey, locationX, locationY}...) TreePot(locationX, locationY) /TreePot/View GET
+   //現在位置から、サーバが計算した一定距離内のHotSpotのリストを取得
+   ({locationX, locationY}...) HotSpot(locationX, locationY)
+   //現在位置から、一定距離内のTreeのリストを取得
+   ({locationX, locationY, owner, point, TreeKey}...) Tree(locationX, locationY) /Tree GET
+   //TreeKeyから対応するTreeのデコレーションのリストを取得
+   ({kind, posX, posY, timestamp, message}...) Decoration(TreeKey)
+   //現在位置から、一定距離内のPartyのリストを取得
+   ({due, owner, message, kind, locationX, locationY}...) Party(locationX, locationY)

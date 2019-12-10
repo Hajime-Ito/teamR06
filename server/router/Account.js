@@ -44,7 +44,7 @@ router.route('/')
         */
         let ref = db.ref("/Account")
         try {
-            const uid = req.body.uid
+            const uid = req.query.uid
             const pid = ref.push().key
             ref = db.ref("/User")
             ref.child(uid).set({

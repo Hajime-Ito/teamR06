@@ -38,7 +38,7 @@ router.use(function Auth(req, res, next) {
 
 router.route('/')
 
-    // 過去にuserの作成したTreePot,TreeのTreeKey,location,近いかどうかを返す
+    // 過去にuserの作成したTreePot,TreeのTreeKey,location,それが一定の距離以内かどうかを返す
     .get((req, res) => {
         /*
         REQ JSON
@@ -50,9 +50,9 @@ router.route('/')
         }
         */
         try {
-            const reqlocationX = req.body.locationX
-            const reqlocationY = req.body.locationY
-            const reqdistance = req.body.distance //一定距離
+            const reqlocationX = req.query.locationX
+            const reqlocationY = req.query.locationY
+            const reqdistance = req.query.distance //一定距離
             const pid = req.body.pid
             //自分の作成したTreePotのパス
             let ref = db.ref('/Tree').orderByChild("owner").equalTo(pid)
@@ -135,7 +135,7 @@ router.route('/')
         }
     })
 
-router.route('/view')
+router.route('/View')
     // 一定距離内のTreePotを返す
     .get((req, res) => {
         /*
@@ -149,9 +149,9 @@ router.route('/view')
         const ref = db.ref("/TreePot")
         try {
 
-            const reqlocationX = req.body.locationX
-            const reqlocationY = req.body.locationY
-            const reqdistance = req.body.distance //一定距離
+            const reqlocationX = req.query.locationX
+            const reqlocationY = req.query.locationY
+            const reqdistance = req.query.distance //一定距離
 
             // 一定距離内のTreePot情報を格納する
             ref.on('child_added', (snapshot) => {

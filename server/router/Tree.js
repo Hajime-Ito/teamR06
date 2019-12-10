@@ -52,10 +52,10 @@ router.route('/')
         const ref = db.ref("/Tree")
         try {
 
-            const reqlocationX = req.body.locationX
-            const reqlocationY = req.body.locationY
-            const reqdistance = req.body.distance //一定距離
-
+            const reqlocationX = req.query.locationX
+            const reqlocationY = req.query.locationY
+            const reqdistance = req.query.distance //一定距離
+            console.log(reqlocationX)
             // 一定距離内のTree情報を格納する
             ref.on('child_added', (snapshot) => {
                 const locationX = snapshot.val().locationX
@@ -100,9 +100,8 @@ router.route('/')
         }
         */
         try {
-            let ref = db.ref("/Tree")
+            const ref = db.ref("/Tree")
             const TreeKey = ref.push().key
-            const MyTreeKey = db.ref("/Account").push().key
 
             // Databaseに保存
             ref.child(TreeKey).set({
@@ -111,11 +110,6 @@ router.route('/')
                 owner: req.body.owner,
                 point: 0,
                 TreeKey: TreeKey,
-            })
-
-            ref = db.ref("/Account").child(MyTreeKey)
-            ref.set({
-                TreeKey: MyTreeKey
             })
 
             const obj = {

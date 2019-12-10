@@ -1,0 +1,23 @@
+/*
+b1018194 Ito Hajime
+*/
+
+#Accept: application/json
+#Content-type: application/json
+
+/Tree
+*GET
+*POST
+*PUT
+
+/Account
+*GET
+*POST
+
+/TreePot
+*GET
+*POST
+*DELETE
+
+/TreePot/View
+*GET
