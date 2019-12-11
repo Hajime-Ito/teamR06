@@ -4,7 +4,7 @@ using System.Text;
 
 namespace cliant.ServerData
 {
-    class UserArg
+    class UpdateUserArg
     {
         public double locationX { set; get; }
         public double locationY { set; get; }

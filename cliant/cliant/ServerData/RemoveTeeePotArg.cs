@@ -4,8 +4,8 @@ using System.Text;
 
 namespace cliant.ServerData
 {
-    class GrowTreePotArg
+    class RemoveTreePotArg
     {
-        public string TreeKey { set; get; }
+        public string TreeKey { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace cliant.ServerData
 {
-    class TreePotRet
+    class GetTreePotsRet
     {
         public string TreeKey { set; get; }
         public double locationX { set; get; }
