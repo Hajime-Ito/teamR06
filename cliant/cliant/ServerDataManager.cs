@@ -35,6 +35,38 @@ namespace cliant
     /// </summary>
     static class ServerDataManager
     {
+        enum API
+        {
+            User,
+            NewDecoration,
+            NewTreePotOwner,
+            GrowPotSpot,
+            GetUid,
+            GetPid,
+            TreePot,
+            HotSpot,
+            Tree,
+            Decoration,
+            Party
+        }
+
+        static Dictionary<API, string> pathOfAPI = new Dictionary<API, string>()
+        {
+            {API.User, "" },
+            {API.NewDecoration, "" },
+            {API.NewTreePotOwner, "" },
+            {API.GrowPotSpot, "" },
+            {API.GetUid, "" },
+            {API.GetPid, "" },
+            {API.TreePot, "" },
+            {API.HotSpot, "" },
+            {API.Tree, "" },
+            {API.Decoration, "" },
+            {API.Party, "" }
+
+        };
+
+
         /// <summary>
         /// Http通信のクライアント
         /// </summary>
@@ -88,7 +120,7 @@ namespace cliant
         /// <param name="value"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<Success<RetT>> Download<RetT,ArgT>(ArgT arg, string path) where RetT : class
+        public async static Task<Success<RetT>> Download<RetT, ArgT>(ArgT arg, string path) where RetT : class
         {
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, arg);
             if (response.IsSuccessStatusCode)
@@ -98,5 +130,126 @@ namespace cliant
 
             return new Success<RetT>(null, false);
         }
+
+        public async static Task<bool> UploadUser(double locationX, double locationY, string pid)
+        {
+            ServerData.UserArg user = new ServerData.UserArg()
+            {
+                locationX = locationX,
+                locationY = locationY,
+                pid = pid
+            };
+
+            return await Upload(user, pathOfAPI[API.User]);
+        }
+
+        public async static Task<bool> UploadNewDecoration(string TreeKey, int kind, int posX, int posY, string message)
+        {
+            ServerData.NewDecorationArg newDecoration = new ServerData.NewDecorationArg()
+            {
+                TreeKey = TreeKey,
+                kind = kind,
+                posX = posX,
+                posY = posY,
+                message = message
+            };
+
+            return await Upload(newDecoration, pathOfAPI[API.NewDecoration]);
+        }
+
+        public async static Task<bool> UploadNewTreePotOwner(string pid)
+        {
+            ServerData.NewTreePotOwnerArg newTreePotOwner = new ServerData.NewTreePotOwnerArg()
+            {
+                pid = pid
+            };
+
+            return await Upload(newTreePotOwner, pathOfAPI[API.NewTreePotOwner]);
+        }
+
+        public async static Task<bool> UploadGrowPotSpot(string TreeKey)
+        {
+            ServerData.GrowPotSpot newTreePotOwner = new ServerData.GrowPotSpot()
+            {
+                TreeKey = TreeKey
+            };
+
+            return await Upload(newTreePotOwner, pathOfAPI[API.GrowPotSpot]);
+
+        }
+
+        public async static Task<Success<ServerData.GetUidRet>> DownloadGetUid()
+        {
+
+
+            return await Download<ServerData.GetUidRet>(pathOfAPI[API.GetUid]);
+        }
+
+        public async static Task<Success<ServerData.GetPidRet>> DownloadGetPid(string uid)
+        {
+            ServerData.GetPidArg getPidArg = new ServerData.GetPidArg()
+            {
+                uid = uid
+            };
+
+            return await Download<ServerData.GetPidRet>(pathOfAPI[API.GetPid]);
+        }
+
+        public async static Task<Success<ServerData.TreePotRet>> DownloadTreePot(double locationX, double locationY)
+        {
+            ServerData.TreePotArg treePotArg = new ServerData.TreePotArg()
+            {
+                locationX = locationX,
+                locationY = locationY
+            };
+
+            return await Download<ServerData.TreePotRet>(pathOfAPI[API.TreePot]);
+        }
+
+
+
+        public async static Task<Success<ServerData.HotSpotRet>> DownloadHotSpot(double locationX, double locationY)
+        {
+            ServerData.HotSpotArg hotSpotArg = new ServerData.HotSpotArg()
+            {
+                locationX = locationX,
+                locationY = locationY
+            };
+
+            return await Download<ServerData.HotSpotRet>(pathOfAPI[API.HotSpot]);
+        }
+
+        public async static Task<Success<ServerData.TreeRet>> DownloadTree(double locationX, double locationY)
+        {
+            ServerData.TreeArg treeArg = new ServerData.TreeArg()
+            {
+                locationX = locationX,
+                locationY = locationY
+            };
+
+            return await Download<ServerData.TreeRet>(pathOfAPI[API.Tree]);
+        }
+
+        public async static Task<Success<ServerData.DecorationRet>> DownloadDecoration(string TreeKey)
+        {
+            ServerData.DecorationArg decorationArg = new ServerData.DecorationArg()
+            {
+                TreeKey = TreeKey
+            };
+
+            return await Download<ServerData.DecorationRet>(pathOfAPI[API.Decoration]);
+        }
+
+        public async static Task<Success<ServerData.PartyRet>> DownloadParty(double locationX, double locationY)
+        {
+            ServerData.PartyArg partyArg = new ServerData.PartyArg()
+            {
+                locationX = locationX,
+                locationY = locationY
+            };
+
+            return await Download<ServerData.PartyRet>(pathOfAPI[API.Party]);
+        }
+
     }
 }
