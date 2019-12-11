@@ -35,6 +35,7 @@
 - curl
 - Node.js command prompt
 - gitbash
+- cron
 
 ## 役割分担
 - 伊藤　壱(サーバ)
