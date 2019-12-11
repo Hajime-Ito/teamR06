@@ -21,7 +21,7 @@ namespace cliant
             TreePot_View,
         }
 
-        static Dictionary<KnownPaths, string> Paths = new Dictionary<KnownPaths, string>()
+        static Dictionary<KnownPaths, string> paths = new Dictionary<KnownPaths, string>()
         {
             {KnownPaths.Tree,"Tree" },
             {KnownPaths.TreePot,"TreePot" },
@@ -45,7 +45,7 @@ namespace cliant
                 pid = pid
             };
 
-            return await ServerDataManager.Post(arg, Paths[KnownPaths.Account]);
+            return await ServerDataManager.Post(arg, paths[KnownPaths.Account]);
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace cliant
                 pid = pid
             };
 
-            return await ServerDataManager.Post(arg, Paths[KnownPaths.Tree])
-                && await ServerDataManager.Post(arg, Paths[KnownPaths.TreePot]);
+            return await ServerDataManager.Post(arg, paths[KnownPaths.Tree])
+                && await ServerDataManager.Post(arg, paths[KnownPaths.TreePot]);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace cliant
                 TreeKey = treeKey
             };
 
-            return await ServerDataManager.Put(arg, Paths[KnownPaths.TreePot]);
+            return await ServerDataManager.Put(arg, paths[KnownPaths.TreePot]);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace cliant
                 TreeKey = treeKey
             };
 
-            return await ServerDataManager.Delete(arg, Paths[KnownPaths.TreePot]);
+            return await ServerDataManager.Delete(arg, paths[KnownPaths.TreePot]);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace cliant
                 uid = uid
             };
 
-            return await ServerDataManager.Get<GetPidRet, GetPidArg>(arg, Paths[KnownPaths.Account]);
+            return await ServerDataManager.Get<GetPidRet, GetPidArg>(arg, paths[KnownPaths.Account]);
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace cliant
                 locationY = locationY
             };
 
-            return await ServerDataManager.Get<GetTreePotsRet[], GetTreePotsArg>(arg, Paths[KnownPaths.TreePot_View]);
+            return await ServerDataManager.Get<GetTreePotsRet[], GetTreePotsArg>(arg, paths[KnownPaths.TreePot_View]);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace cliant
                 pid = pid
             };
 
-            return await ServerDataManager.Get<GetTreePotsRet[], GetMyTreePotsArg>(arg, Paths[KnownPaths.TreePot]);
+            return await ServerDataManager.Get<GetTreePotsRet[], GetMyTreePotsArg>(arg, paths[KnownPaths.TreePot]);
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace cliant
                 locationY = locationY
             };
 
-            return await ServerDataManager.Get<GetTreesRet[], GetTreesArg>(arg, Paths[KnownPaths.Tree]);
+            return await ServerDataManager.Get<GetTreesRet[], GetTreesArg>(arg, paths[KnownPaths.Tree]);
         }
     }
 }
