@@ -16,16 +16,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Theme.xaml.cs">
+    <Compile Update="XAML\Theme.xaml.cs">
       <DependentUpon>Theme.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ExamplePage.xaml">
+    <EmbeddedResource Update="XAML\ExamplePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Theme.xaml">
+    <EmbeddedResource Update="XAML\Theme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
