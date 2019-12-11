@@ -108,7 +108,7 @@ namespace cliant
             server.AddService(service);
         }
 
-        static void ServerStop()
+        public static void ServerStop()
         {
             if(server == null || server.Services.Count == 0) { return; }
             server.ClearServices();
