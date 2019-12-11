@@ -5,6 +5,8 @@ using System.Text;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
+using System.Web;
 
 namespace cliant
 {
@@ -88,15 +90,33 @@ namespace cliant
         /// <param name="value"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<Success<RetT>> Download<RetT,ArgT>(ArgT arg, string path) where RetT : class
+        public async static Task<Success<RetT>> Download<RetT, ArgT>(ArgT arg, string path) where RetT : class
         {
-            HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, arg);
+            HttpResponseMessage response = await HttpClient.GetAsync($"{path}?{MakeQuery(arg)}");
             if (response.IsSuccessStatusCode)
             {
                 return new Success<RetT>(await response.Content.ReadAsAsync<RetT>(), true);
             }
 
             return new Success<RetT>(null, false);
+        }
+
+        /// <summary>
+        /// オブジェクトのプロパティーを取得し、httpクエリを生成します。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static string MakeQuery<T>(T value)
+        {
+            NameValueCollection queryString = HttpUtility.ParseQueryString(string.Empty);
+
+            foreach (var prop in typeof(T).GetProperties())
+            {
+                queryString[prop.Name] = prop.GetValue(value).ToString();
+            }
+
+            return queryString.ToString();
         }
     }
 }
