@@ -1,13 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections;
-using System.Text;
+﻿using Newtonsoft.Json;
 using Plugin.BluetoothLE;
-using System.Runtime.InteropServices;
-using System.Reactive.Linq;
-using Newtonsoft.Json;
 using Plugin.BluetoothLE.Server;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Linq;
+using System.Text;
 
 namespace cliant
 {
@@ -16,9 +14,9 @@ namespace cliant
         static class Guids
         {
             public static readonly Guid service = new Guid("cb04fe4d-5229-48b5-87b4-6fdf0be3d985");
-            public static readonly Guid ids = new Guid("00000000-0000-0000-0000-000000000000");
-            public static readonly Guid reqIDs = new Guid("00000000-0000-0000-0000-000000000001");
-            public static readonly Guid datas = new Guid("00000000-0000-0000-0000-000000000002");
+            public static readonly Guid ids =     new Guid("cb04fe4d-0000-0000-0000-000000000000");
+            public static readonly Guid reqIDs =  new Guid("cb04fe4d-0000-0000-0000-000000000001");
+            public static readonly Guid datas =   new Guid("cb04fe4d-0000-0000-0000-000000000002");
         }
 
         static List<string> nowReqID = new List<string>();
@@ -84,25 +82,27 @@ namespace cliant
             }
 
             if(server.Services.Count != 0) { return; }
+            var service = server.CreateService(Guids.service, true);
 
-            server.AddService(Guids.service, true, call =>
-            {
-                characteristicIDs = call.AddCharacteristic(
+            characteristicIDs = service.AddCharacteristic(
                     Guids.ids,
                     CharacteristicProperties.Read | CharacteristicProperties.Write,
                     GattPermissions.Read | GattPermissions.Write
-                );
-                characteristicReqIDs = call.AddCharacteristic(
-                    Guids.reqIDs,
-                    CharacteristicProperties.Read | CharacteristicProperties.Write,
-                    GattPermissions.Read | GattPermissions.Write
-                );
-                characteristicDatas = call.AddCharacteristic(
-                    Guids.datas,
-                    CharacteristicProperties.Read | CharacteristicProperties.Write,
-                    GattPermissions.Read | GattPermissions.Write
-                );
-            });
+            );
+
+            characteristicReqIDs = service.AddCharacteristic(
+                Guids.reqIDs,
+                CharacteristicProperties.Read | CharacteristicProperties.Write,
+                GattPermissions.Read | GattPermissions.Write
+            );
+
+            characteristicDatas = service.AddCharacteristic(
+                Guids.datas,
+                CharacteristicProperties.Read | CharacteristicProperties.Write,
+                GattPermissions.Read | GattPermissions.Write
+            );
+
+            server.AddService(service);
         }
 
         static void ServerStop()
@@ -114,11 +114,19 @@ namespace cliant
         static public void SendIDs(string[] ids)
         {
             TryServerInit();
+
             characteristicIDs.WhenReadReceived().Subscribe(observer =>
             {
-                var str = JsonConvert.SerializeObject(ids);
-                observer.Value = Encoding.UTF8.GetBytes(str);
-                observer.Status = GattStatus.Success;
+                try
+                {
+                    var str = JsonConvert.SerializeObject(ids);
+                    observer.Value = Encoding.UTF8.GetBytes(str);
+                    observer.Status = GattStatus.Success;
+                }
+                catch (Exception)
+                {
+                    observer.Status = GattStatus.Failure;
+                }
             });
         }
 
@@ -136,22 +144,36 @@ namespace cliant
 
             characteristicReqIDs.WhenReadReceived().Subscribe(observer =>
             {
-                var str = JsonConvert.SerializeObject(nowReqID);
-                observer.Value = Encoding.UTF8.GetBytes(str);
-                observer.Status = GattStatus.Success;
+                try
+                {
+                    var str = JsonConvert.SerializeObject(nowReqID);
+                    observer.Value = Encoding.UTF8.GetBytes(str);
+                    observer.Status = GattStatus.Success;
+                }
+                catch (Exception)
+                {
+                    observer.Status = GattStatus.Failure;
+                }
             });
         }
 
         static public void SendDatas(FlyerData[] flyerDatas)
         {
             TryServerInit();
+
             characteristicDatas.WhenReadReceived().Subscribe(observer =>
             {
-                var str = JsonConvert.SerializeObject(flyerDatas);
-                observer.Value = Encoding.UTF8.GetBytes(str);
-                observer.Status = GattStatus.Success;
+                try
+                {
+                    var str = JsonConvert.SerializeObject(flyerDatas);
+                    observer.Value = Encoding.UTF8.GetBytes(str);
+                    observer.Status = GattStatus.Success;
+                }
+                catch (Exception)
+                {
+                    observer.Status = GattStatus.Failure;
+                }
             });
         }
-
     }
 }
