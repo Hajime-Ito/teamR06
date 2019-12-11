@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using System.Text;
@@ -6,6 +7,7 @@ using Plugin.BluetoothLE;
 using System.Runtime.InteropServices;
 using System.Reactive.Linq;
 using Newtonsoft.Json;
+using Plugin.BluetoothLE.Server;
 
 namespace cliant
 {
@@ -19,82 +21,136 @@ namespace cliant
             public static readonly Guid datas = new Guid("00000000-0000-0000-0000-000000000002");
         }
 
-        static public string[] GetIDs()
+        static List<string> nowReqID = new List<string>();
+
+        static private List<T> GetValues<T>(Guid guid)
         {
-            List<string> ids = new List<string>();
+            List<T> values = new List<T>();
 
             CrossBleAdapter.Current.Scan().Subscribe(scanResult =>
             {
                 // Once finding the device/scanresult you want
                 scanResult.Device.Connect();
 
-                scanResult.Device.GetKnownCharacteristics(Guids.service, new Guid[] { Guids.ids }).Subscribe(async characteristic =>
+                scanResult.Device.GetKnownCharacteristics(Guids.service, new Guid[] { guid }).Subscribe(async characteristic =>
                 {
                     var read = await characteristic.Read();
-                    ids.Add(Encoding.UTF8.GetString(read.Data));
+                    var str = Encoding.UTF8.GetString(read.Data);
+                    var data = JsonConvert.DeserializeObject<T[]>(str);
+                    values.AddRange(data);
                 });
 
             });
 
-            return ids.ToArray();
+            return values;
+        }
+
+        static public string[] GetIDs()
+        {
+            return GetValues<string>(Guids.ids).ToArray();
         }
 
         static public string[] GetReqIDs()
         {
-            List<string> reqIDs = new List<string>();
-
-            CrossBleAdapter.Current.Scan().Subscribe(scanResult =>
-            {
-                // Once finding the device/scanresult you want
-                scanResult.Device.Connect();
-
-                scanResult.Device.GetKnownCharacteristics(Guids.service, new Guid[] { Guids.reqIDs }).Subscribe(async characteristic =>
-                {
-                    var read = await characteristic.Read();
-                    reqIDs.Add(Encoding.UTF8.GetString(read.Data));
-                });
-
-            });
-
-            return reqIDs.ToArray();
+            return GetValues<string>(Guids.reqIDs).ToArray();
         }
 
         static public FlyerData[] GetDatas()
         {
-            List<FlyerData> datas = new List<FlyerData>();
-
-            CrossBleAdapter.Current.Scan().Subscribe(scanResult =>
+            return GetValues<FlyerData>(Guids.datas).Where(data =>
             {
-                // Once finding the device/scanresult you want
-                scanResult.Device.Connect();
-
-                scanResult.Device.GetKnownCharacteristics(Guids.service, new Guid[] { Guids.datas }).Subscribe(async characteristic =>
+                for (int i = 0; i < nowReqID.Count; i++)
                 {
-                    var read = await characteristic.Read();
-                    var str = Encoding.UTF8.GetString(read.Data);
-                    datas.Add(JsonConvert.DeserializeObject<FlyerData>(str));
-                });
+                    if(data.ID == nowReqID[i])
+                    {
+                        return true;
+                    }
+                }
+                return false;
 
-            });
-
-            return datas.ToArray();
+            }).ToArray();
         }
 
+        static IGattServer server = null;
+        static Plugin.BluetoothLE.Server.IGattCharacteristic characteristicIDs;
+        static Plugin.BluetoothLE.Server.IGattCharacteristic characteristicReqIDs;
+        static Plugin.BluetoothLE.Server.IGattCharacteristic characteristicDatas;
 
+        static async void TryServerInit()
+        {
+            if(server == null)
+            {
+                server = await CrossBleAdapter.Current.CreateGattServer();
+            }
+
+            if(server.Services.Count != 0) { return; }
+
+            server.AddService(Guids.service, true, call =>
+            {
+                characteristicIDs = call.AddCharacteristic(
+                    Guids.ids,
+                    CharacteristicProperties.Read | CharacteristicProperties.Write,
+                    GattPermissions.Read | GattPermissions.Write
+                );
+                characteristicReqIDs = call.AddCharacteristic(
+                    Guids.reqIDs,
+                    CharacteristicProperties.Read | CharacteristicProperties.Write,
+                    GattPermissions.Read | GattPermissions.Write
+                );
+                characteristicDatas = call.AddCharacteristic(
+                    Guids.datas,
+                    CharacteristicProperties.Read | CharacteristicProperties.Write,
+                    GattPermissions.Read | GattPermissions.Write
+                );
+            });
+        }
+
+        static void ServerStop()
+        {
+            if(server == null || server.Services.Count == 0) { return; }
+            server.ClearServices();
+        }
 
         static public void SendIDs(string[] ids)
         {
-            throw new NotImplementedException();
+            TryServerInit();
+            characteristicIDs.WhenReadReceived().Subscribe(observer =>
+            {
+                var str = JsonConvert.SerializeObject(ids);
+                observer.Value = Encoding.UTF8.GetBytes(str);
+                observer.Status = GattStatus.Success;
+            });
         }
 
         static public void SendReqIDs(string[] reqIds)
         {
-            throw new NotImplementedException();
+            TryServerInit();
+
+            foreach (var id in reqIds)
+            {
+                if(!nowReqID.Any(s => s == id))
+                {
+                    nowReqID.Add(id);
+                }
+            }
+
+            characteristicReqIDs.WhenReadReceived().Subscribe(observer =>
+            {
+                var str = JsonConvert.SerializeObject(nowReqID);
+                observer.Value = Encoding.UTF8.GetBytes(str);
+                observer.Status = GattStatus.Success;
+            });
         }
 
         static public void SendDatas(FlyerData[] flyerDatas)
         {
-            throw new NotImplementedException();
+            TryServerInit();
+            characteristicDatas.WhenReadReceived().Subscribe(observer =>
+            {
+                var str = JsonConvert.SerializeObject(flyerDatas);
+                observer.Value = Encoding.UTF8.GetBytes(str);
+                observer.Status = GattStatus.Success;
+            });
         }
 
     }
