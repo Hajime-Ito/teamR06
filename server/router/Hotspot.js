@@ -8,6 +8,8 @@ Hotspotを計算・配信する
 const express = require('express')
 // Import bodyParser
 const bodyParser = require('body-parser')
+// Import hotspot.js
+const hotspot = require("../js/hotspot")
 
 const app = express()
 
@@ -15,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 const router = express.Router()
+
+let locations = []
 
 router.use(function Auth(req, res, next) {
     //login確認処理
@@ -44,7 +48,21 @@ router.route('/')
         distance: "XXXX"
         }
         */
-        
+        const locationX = req.query.locationX
+        const locationY = req.query.locationY
+        const distance = req.query.distance
+        const ref = db.ref("/Account")
+        ref.on('child_added', (snapshot) => {
+            const location = {
+                x: snapshot.val().locationX,
+                y: snapshot.val().locationY
+            }
+            locations.push(location)
+        })
+        const obj = hotspot.gethotspot(locationX, locationY, distance, locations)
+        const json = JSON.stringify(obj)
+        res.send(json)
+        locations = []
     })
 
 module.exports = router

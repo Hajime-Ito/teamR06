@@ -118,13 +118,13 @@ router.route('/')
     // TreePotのSessionを切る
     .delete((req, res) => {
         /*
-        REQ JSON
+        QUERY JSON
         {
         TreeKey: "XXXX"
         }
         */
 
-        const TreeKey = req.body.TreeKey
+        const TreeKey = req.query.TreeKey
         const ref = db.ref('/TreePot')
         try {
             //TreePotのデータを削除

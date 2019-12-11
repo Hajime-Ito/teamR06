@@ -3,14 +3,16 @@ b1018194 Ito Hajime
 HotSpot.js
 hotspotを求める
 */
-exports.hotspot = () => {
+exports.gethotspot = (locationX, locationY, distance, locations) => {
     /*以下のconst値を引数としてとる*/
-    const mylocate = { x: 0, y: 0 } // 自分自身の位置
-    const locateuser = [{ x: 1, y: 0 }, { x: 1, y: 1.5 }, { x: 2, y: 2 },
+    const mylocate = { x: locationX, y: locationY } // 自分自身の位置
+    const locateuser = locations
+    /*[{ x: 1, y: 0 }, { x: 1, y: 1.5 }, { x: 2, y: 2 },
     { x: 3, y: 1 }, { x: 1, y: 3 }, { x: 3, y: 3 },
-    { x: 3, y: 2.5 }, { x: 2, y: 3 }, { x: 5, y: 5 }, { x: 1, y: 1.7 }] // それぞれのユーザの位置情報
-    const distancefromMe = 10 // 自分の位置から取得するhotspotの最大距離(半径)
-    const distance_min = 1.2 // それぞれのユーザ位置情報の最小直線距離
+    { x: 3, y: 2.5 }, { x: 2, y: 3 }, { x: 5, y: 5 }, { x: 1, y: 1.7 }]*/
+    // それぞれのユーザの位置情報
+    const distancefromMe = distance // 自分の位置から取得するhotspotの最大距離(半径)
+    const distance_min = 1.2 // それぞれのユーザ位置情報の最小直線距離(10mを想定)
 
     let locateobj = locateuser
     let obj = [] // 条件を満たすユーザ位置情報を管理する
@@ -57,7 +59,7 @@ exports.hotspot = () => {
         if (bool) {
             tmpx += locateobj[i].x // 仲間を持つ基準位置となったユーザ位置情報x
             tmpy += locateobj[i].y // 仲間を持つ基準位置となったユーザ位置情報y
-            HotSpot.push({ hotx: tmpx / (count + 1), hoty: tmpy / (count + 1), count: count + 1 })
+            HotSpot.push({ locationX: tmpx / (count + 1), locationY: tmpy / (count + 1), n: count + 1 })
             // Hotspot配列にグループの平均位置を保存(count+1となっているのは基準ユーザ位置の分がカウントされていないため)
         }
     }
