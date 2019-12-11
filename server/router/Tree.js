@@ -69,12 +69,14 @@ router.route('/')
                         const owner = snapshot.val().owner
                         const point = snapshot.val().point
                         const TreeKey = snapshot.val().TreeKey
+                        const TreeName = snapshot.val().TreeName
                         const snap = {
                             "locationX": locationX,
                             "locationY": locationY,
                             "owner": owner,
                             "point": point,
                             "TreeKey": TreeKey,
+                            "TreeName": TreeName
                         }
                         objects.push(snap)
                         //console.log(JSON.stringify(objects))
@@ -96,7 +98,8 @@ router.route('/')
         {
         "owner":"XXXX",
         "locationY":"XXXX",
-        "locationX":"XXXX"
+        "locationX":"XXXX",
+        "TreeName":"XXXX"
         }
         */
         try {
@@ -110,6 +113,7 @@ router.route('/')
                 owner: req.body.owner,
                 point: 0,
                 TreeKey: TreeKey,
+                TreeName: TreeName
             })
 
             const obj = {

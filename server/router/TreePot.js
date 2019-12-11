@@ -38,7 +38,7 @@ router.use(function Auth(req, res, next) {
 
 router.route('/')
 
-    // 過去にuserの作成したTreePot,TreeのTreeKey,location,それが一定の距離以内かどうかを返す
+    // 過去にuserの作成したTreeのTreeKey,location,それが一定の距離以内かどうかを返す
     .get((req, res) => {
         /*
         REQ Query
@@ -54,17 +54,19 @@ router.route('/')
             const reqlocationY = req.query.locationY
             const reqdistance = req.query.distance //一定距離
             const pid = req.body.pid
-            //自分の作成したTreePotのパス
+            //自分の作成したTreeのパス
             let ref = db.ref('/Tree').orderByChild("owner").equalTo(pid)
-            // 一定距離内のTreePot情報を格納する
+            // 一定距離内の自分の作成したTree情報を格納する
             ref.once('value', (snapshot) => {
                 const locationX = snapshot.val().locationX
                 const locationY = snapshot.val().locationY
                 const TreeKey = snapshot.val().TreeKey
+                const TreeName = snapshot.val().TreeName
 
                 if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
-                    //一定距離の中に入っている自分の作成したTreePot
+                    //一定距離の中に入っている自分の作成したTree
                     const snap = {
+                        "TreeName": TreeName,
                         "TreeKey": TreeKey,
                         "locationX": locationX,
                         "locationY": locationY,
@@ -72,8 +74,9 @@ router.route('/')
                     }
                     objects.push(snap)
                 } else {
-                    //一定距離の中に入っていない自分の作成したTreePot
+                    //一定距離の中に入っていない自分の作成したTree
                     const snap = {
+                        "TreeName": TreeName,
                         "TreeKey": TreeKey,
                         "locationX": locationX,
                         "locationY": locationY,
@@ -125,10 +128,10 @@ router.route('/')
         */
 
         const TreeKey = req.query.TreeKey
-        const ref = db.ref('/TreePot')
+        const ref = db.ref('/TreePot').orderByChild("TreeKey").equalTo(TreeKey)
         try {
             //TreePotのデータを削除
-            ref.child(TreeKey).remove()
+            ref.remove()
             res.send("success")
         } catch (error) {
             res.send("error")
