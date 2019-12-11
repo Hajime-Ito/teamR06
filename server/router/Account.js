@@ -37,7 +37,7 @@ router.route('/')
     // pidを生成し書き込みpidを返す
     .get((req, res) => {
         /*
-        REQ JSON
+        REQ Query
         {
         uid: "XXXX"
         }

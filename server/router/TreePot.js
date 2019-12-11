@@ -41,7 +41,7 @@ router.route('/')
     // 過去にuserの作成したTreePot,TreeのTreeKey,location,それが一定の距離以内かどうかを返す
     .get((req, res) => {
         /*
-        REQ JSON
+        REQ Query
         {
         pid: "XXXX"
         locationX: "XXXX"
@@ -139,7 +139,7 @@ router.route('/View')
     // 一定距離内のTreePotを返す
     .get((req, res) => {
         /*
-        REQ JSON
+        REQ Query
         {
         locationX: "XXXX"
         locationY: "XXXX"

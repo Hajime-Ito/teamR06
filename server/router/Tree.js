@@ -41,7 +41,7 @@ router.route('/')
     //TreeKey Map表示のためにGET
     .get((req, res) => {
         /*
-        REQ JSON
+        REQ Query
         {
         locationX: "XXXX"
         locationY: "XXXX"
@@ -55,7 +55,7 @@ router.route('/')
             const reqlocationX = req.query.locationX
             const reqlocationY = req.query.locationY
             const reqdistance = req.query.distance //一定距離
-            console.log(reqlocationX)
+            //console.log(reqlocationX)
             // 一定距離内のTree情報を格納する
             ref.on('child_added', (snapshot) => {
                 const locationX = snapshot.val().locationX

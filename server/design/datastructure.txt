@@ -1,4 +1,3 @@
-/*
 Data構造
 Root - User - ${uid} - uid : ${uid}
                      - pid : ${pid}
@@ -17,19 +16,18 @@ Root - User - ${uid} - uid : ${uid}
 
      - TreePot - ${TreePotKey} - locationX : num //Session一時的
                                - locationY : num
-                               - owner: ${TreeKey}
+                               - TreeKey: ${TreeKey}
 
      - Account - ${pid} - locationX : num
                         - locationY : num
                         - pid : ${pid}
 
-     - Party - &{EventKey} - due : num
+     - Party - ${PartyKey} - duedate : num
+                           - duemonth : num
+                           - dueyear : num
                            - owner : ${pid}
                            - message : string
                            - kind : string
                            - locationX : num
                            - locationY : num
-
-hotspot, tree, treepot,Partyは距離で取得
-uidをもらってpidを作成して返す
-*/
+                           - PartyKey : ${PartyKey}
