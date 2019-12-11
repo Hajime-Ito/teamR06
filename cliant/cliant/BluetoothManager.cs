@@ -24,8 +24,11 @@ namespace cliant
         static private List<T> GetValues<T>(Guid guid)
         {
             List<T> values = new List<T>();
+            var scan = CrossBleAdapter.Current.Scan();
 
-            CrossBleAdapter.Current.Scan().Subscribe(scanResult =>
+            if(scan == null) { return null; }
+
+            scan.Subscribe(scanResult =>
             {
                 // Once finding the device/scanresult you want
                 scanResult.Device.Connect();
