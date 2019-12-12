@@ -6,10 +6,26 @@
              mc:Ignorable="d"
              x:Class="cliant.Flyer">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView x:Name="FlyerList" HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <ViewCell>
+                        <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal">
+                            <StackLayout
+                            Orientation="Vertical">
+                                <Label Text="{Binding Title}" TextColor="#000000" />
+                                <Label Text="{Binding Date}" TextColor="#000000" />
+                                <Label Text="{Binding Categoly}" TextColor="#000000" />
+                                <Label Text="{Binding Place}" TextColor="#000000"
+                                <Label Text="{Binding Text}" TextColor="#000000" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
