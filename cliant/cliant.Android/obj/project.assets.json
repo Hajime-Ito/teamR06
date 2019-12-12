@@ -888,10 +888,25 @@
           "build/MonoAndroid80/_._": {}
         }
       },
+      "XamForms.Controls.Calendar/1.1.1": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "2.3.4.231"
+        },
+        "compile": {
+          "lib/MonoAndroid10/XamForms.Controls.Calendar.Droid.dll": {},
+          "lib/MonoAndroid10/XamForms.Controls.Calendar.dll": {}
+        },
+        "runtime": {
+          "lib/MonoAndroid10/XamForms.Controls.Calendar.Droid.dll": {},
+          "lib/MonoAndroid10/XamForms.Controls.Calendar.dll": {}
+        }
+      },
       "cliant/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "XamForms.Controls.Calendar": "1.1.1",
           "Xamarin.Essentials": "1.3.1",
           "Xamarin.Forms": "4.3.0.908675",
           "Xamarin.Forms.GoogleMaps": "3.3.0"
@@ -2096,6 +2111,30 @@
         "lib/MonoAndroid80/Xamarin.GooglePlayServices.Tasks.dll",
         "xamarin.googleplayservices.tasks.60.1142.1.nupkg.sha512",
         "xamarin.googleplayservices.tasks.nuspec"
+      ]
+    },
+    "XamForms.Controls.Calendar/1.1.1": {
+      "sha512": "GCydwm9HO+8V4iGVsGJZtnHJaqIpjas40BSRU+T7lIM7E4nZ7pOn2Ifzu0Y6MLrZJuqCHFeroOWjJSfOjZIyyw==",
+      "type": "package",
+      "path": "xamforms.controls.calendar/1.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/XamForms.Controls.Calendar.Droid.dll",
+        "lib/MonoAndroid10/XamForms.Controls.Calendar.dll",
+        "lib/MonoTouch10/XamForms.Controls.Calendar.dll",
+        "lib/MonoTouch10/XamForms.Controls.Calendar.iOS.dll",
+        "lib/UAP10/XamForms.Controls.Calendar.UWP.dll",
+        "lib/UAP10/XamForms.Controls.Calendar.dll",
+        "lib/Xamarin.iOS10/XamForms.Controls.Calendar.dll",
+        "lib/Xamarin.iOS10/XamForms.Controls.Calendar.iOS.dll",
+        "lib/portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/XamForms.Controls.Calendar.dll",
+        "lib/win81/XamForms.Controls.Calendar.Windows.dll",
+        "lib/win81/XamForms.Controls.Calendar.dll",
+        "lib/wpa81/XamForms.Controls.Calendar.WinPhone.dll",
+        "lib/wpa81/XamForms.Controls.Calendar.dll",
+        "xamforms.controls.calendar.1.1.1.nupkg.sha512",
+        "xamforms.controls.calendar.nuspec"
       ]
     },
     "cliant/1.0.0": {

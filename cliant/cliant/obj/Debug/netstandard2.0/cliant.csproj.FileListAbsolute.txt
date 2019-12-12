@@ -24,4 +24,6 @@ C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\cliant.dll
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\ref\cliant.dll
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\cliant.pdb
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\PartyForm.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\PartyFormDate.xaml.g.cs
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XamlC.stamp

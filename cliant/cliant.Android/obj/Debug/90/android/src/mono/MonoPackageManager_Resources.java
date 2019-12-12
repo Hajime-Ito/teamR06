@@ -53,6 +53,8 @@ public class MonoPackageManager_Resources {
 		"Xamarin.GooglePlayServices.Basement.dll",
 		"Xamarin.GooglePlayServices.Maps.dll",
 		"Xamarin.GooglePlayServices.Tasks.dll",
+		"XamForms.Controls.Calendar.dll",
+		"XamForms.Controls.Calendar.Droid.dll",
 	};
 	public static String[] Dependencies = new String[]{
 	};
