@@ -13,7 +13,7 @@
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:ThemeItem}">
                     <local:ThemeItem Title="Example" IconSource="example.png" TargetType="{x:Type local:ExamplePage}" />
-                </x:Array>
+                                </x:Array>
             </ListView.ItemsSource>
 
             <!--デザイン&要素の配置を行う-->
