@@ -599,23 +599,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\b1018\\.nuget\\packages\\": {},
+    "C:\\Users\\b1019083\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b1018\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
+      "projectUniqueName": "C:\\Users\\b1019083\\Desktop\\teamR06\\cliant\\cliant\\cliant.csproj",
       "projectName": "cliant",
-      "projectPath": "C:\\Users\\b1018\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\cliant.csproj",
-      "packagesPath": "C:\\Users\\b1018\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b1018\\source\\repos\\p2hacks\\teamR06\\cliant\\cliant\\obj\\",
+      "projectPath": "C:\\Users\\b1019083\\Desktop\\teamR06\\cliant\\cliant\\cliant.csproj",
+      "packagesPath": "C:\\Users\\b1019083\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\b1019083\\Desktop\\teamR06\\cliant\\cliant\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\b1018\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\b1019083\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -669,7 +669,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
