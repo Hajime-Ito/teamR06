@@ -25,5 +25,10 @@ namespace cliant
             this.time = time;
             this.decoMax = decoMax;
         }
+
+        void ContentUpdate()
+        {
+            throw new NotImplementedException("ContentUpdateは未実装です");
+        }
     }
 }
