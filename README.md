@@ -21,6 +21,7 @@
      - Express
      - moment.js moment-timezone
      - body-parser
+     - Bignumber
 
 - クライアントサイド
      - フロント：Xamarin.Forms
