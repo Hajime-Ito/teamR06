@@ -3,6 +3,9 @@ b1018194 Ito Hajime
 HotSpot.js
 hotspotを求める
 */
+
+const bignum = require("bignumber.js")
+
 exports.gethotspot = (locationX, locationY, distance, locations) => {
     /*以下のconst値を引数としてとる*/
     const mylocate = { x: locationX, y: locationY } // 自分自身の位置
@@ -57,9 +60,10 @@ exports.gethotspot = (locationX, locationY, distance, locations) => {
             }
         }
         if (bool) {
-            tmpx += locateobj[i].x // 仲間を持つ基準位置となったユーザ位置情報x
-            tmpy += locateobj[i].y // 仲間を持つ基準位置となったユーザ位置情報y
-            HotSpot.push({ locationX: tmpx / (count + 1), locationY: tmpy / (count + 1), n: count + 1 })
+            const x = bignum(tmpx).plus(locateobj[i].x) // 仲間を持つ基準位置となったユーザ位置情報x
+            const y = bignum(tmpy).plus(locateobj[i].y) // 仲間を持つ基準位置となったユーザ位置情報y
+            console.log(x)
+            HotSpot.push({ locationX: x / (count + 1), locationY: y / (count + 1), n: count + 1 })
             // Hotspot配列にグループの平均位置を保存(count+1となっているのは基準ユーザ位置の分がカウントされていないため)
         }
     }
