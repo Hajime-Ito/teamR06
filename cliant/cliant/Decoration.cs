@@ -6,7 +6,7 @@ using System.IO;
 namespace cliant
 {
 
-    enum Decotype
+    public enum Decotype
     {
         presentBox,
         snowMan,
@@ -17,13 +17,13 @@ namespace cliant
     }
     class Decoration
     {
-        Stream picture;
-        Decotype decotype;
-        double locationX;
-        double locationY;
-        string message;
-        int year;
-        int month;
-        int date;
+        public string Picture { set; get; }
+        public Decotype Decotype { set; get; }
+        public double LocationX { set; get; }
+        public double LocationY { set; get; }
+        public string Message { set; get; }
+        public int Year { set; get; }
+        public int Month{ set; get; }
+        public int Date { set; get; }
     }
 }

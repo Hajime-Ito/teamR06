@@ -6,27 +6,27 @@ namespace cliant
 {
     class TreeData
     {
-        float locationX { set; get; }
-        float locationY { set; get; }
-        int growStage { set; get; }
-        List<Decoration> decorations { set; get; }
-        int point { set; get; }
-        int NumofHuman { set; get; }
-        float time { set; get; }
-        int decoMax { set; get; }
-        TreeData(float locationX, float locationY, int growStage, List<Decoration> decorations, int point, int NumofHuman, float time, int decoMax)
+        public float LocationX { set; get; }
+        public float LocationY { set; get; }
+        public int GrowStage { set; get; }
+        public List<Decoration> Decorations { set; get; }
+        public int Point { set; get; }
+        public int NumofHuman { set; get; }
+        public float Time { set; get; }
+        public int DecoMax { set; get; }
+        public TreeData(float locationX, float locationY, int growStage, List<Decoration> decorations, int point, int NumofHuman, float time, int decoMax)
         {
-            this.locationX = locationX;
-            this.locationY = locationY;
-            this.growStage = growStage;
-            this.decorations = decorations;
-            this.point = point;
+            this.LocationX = locationX;
+            this.LocationY = locationY;
+            this.GrowStage = growStage;
+            this.Decorations = decorations;
+            this.Point = point;
             this.NumofHuman = NumofHuman;
-            this.time = time;
-            this.decoMax = decoMax;
+            this.Time = time;
+            this.DecoMax = decoMax;
         }
 
-        void ContentUpdate()
+        public void ContentUpdate()
         {
             throw new NotImplementedException("ContentUpdateは未実装です");
         }
