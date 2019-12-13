@@ -57,35 +57,40 @@ router.route('/')
             const reqdistance = req.query.distance //一定距離
             //console.log(reqlocationX)
             // 一定距離内のTree情報を格納する
-            ref.on('child_added', (snapshot) => {
-                const locationX = snapshot.val().locationX
-                const locationY = snapshot.val().locationY
+            const result = new Promise((resolve) => {
+                ref.on('child_added', (snapshot) => {
+                    const locationX = snapshot.val().locationX
+                    const locationY = snapshot.val().locationY
 
-                if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
-                    const TreeKey = snapshot.val().TreeKey
-                    ref.child(TreeKey).once('value', (snapshot) => {
-                        const locationX = snapshot.val().locationX
-                        const locationY = snapshot.val().locationY
-                        const owner = snapshot.val().owner
-                        const point = snapshot.val().point
+                    if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
                         const TreeKey = snapshot.val().TreeKey
-                        const TreeName = snapshot.val().TreeName
-                        const snap = {
-                            "locationX": locationX,
-                            "locationY": locationY,
-                            "owner": owner,
-                            "point": point,
-                            "TreeKey": TreeKey,
-                            "TreeName": TreeName
-                        }
-                        objects.push(snap)
-                        //console.log(JSON.stringify(objects))
-                    })
-                }
+                        ref.child(TreeKey).once('value', (snapshot) => {
+                            const locationX = snapshot.val().locationX
+                            const locationY = snapshot.val().locationY
+                            const owner = snapshot.val().owner
+                            const point = snapshot.val().point
+                            const TreeKey = snapshot.val().TreeKey
+                            const TreeName = snapshot.val().TreeName
+                            const snap = {
+                                "locationX": locationX,
+                                "locationY": locationY,
+                                "owner": owner,
+                                "point": point,
+                                "TreeKey": TreeKey,
+                                "TreeName": TreeName
+                            }
+                            objects.push(snap)
+                            resolve()
+                            //console.log(JSON.stringify(objects))
+                        })
+                    }
+                })
             })
 
-            const json = JSON.stringify(objects)
-            res.send(json)
+            result.then(() => {
+                const json = JSON.stringify(objects)
+                res.send(json)
+            })
         } catch (error) { res.send("error") }
     })
 
@@ -113,14 +118,17 @@ router.route('/')
                 owner: req.body.owner,
                 point: 0,
                 TreeKey: TreeKey,
-                TreeName: TreeName
+                TreeName: req.body.TreeName
+            }, (error) => {
+                if (error) res.send("error")
+                else {
+                    const obj = {
+                        "TreeKey": TreeKey
+                    }
+                    const json = JSON.stringify(obj)
+                    res.send(json)
+                }
             })
-
-            const obj = {
-                "TreeKey": TreeKey
-            }
-            const json = JSON.stringify(obj)
-            res.send(json)
         } catch (error) {
             res.send("error")
         }
@@ -140,11 +148,17 @@ router.route('/')
         try {
             //TreeKeyを貰う
             const TreeKey = req.body.TreeKey
-            console.log(TreeKey)
-            ref.child(TreeKey + "/point").transaction(function (point) {
-                return (point || 0) + 1
+            //console.log(TreeKey)
+            const result = new Promise((resolve) => {
+                ref.child(TreeKey + "/point").transaction(function (point) {
+                    return (point || 0) + 1
+                })
+                resolve()
             })
-            res.send("success")
+
+            result.then(() => {
+                res.send("success")
+            })
         } catch (error) { res.send('error') }
 
     })

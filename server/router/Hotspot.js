@@ -18,8 +18,6 @@ app.use(bodyParser.json())
 
 const router = express.Router()
 
-let locations = []
-
 router.use(function Auth(req, res, next) {
     //login確認処理
     /*const token = req.headers// headerのlogin tokenを受け取る
@@ -52,17 +50,24 @@ router.route('/')
         const locationY = req.query.locationY
         const distance = req.query.distance
         const ref = db.ref("/Account")
-        ref.on('child_added', (snapshot) => {
-            const location = {
-                x: snapshot.val().locationX,
-                y: snapshot.val().locationY
-            }
-            locations.push(location)
+        let locations = []
+
+        const result = new Promise((resolve) => {
+            ref.on('child_added', (snapshot) => {
+                const location = {
+                    x: snapshot.val().locationX,
+                    y: snapshot.val().locationY
+                }
+                locations.push(location)
+                resolve()
+            })
         })
-        const obj = hotspot.gethotspot(locationX, locationY, distance, locations)
-        const json = JSON.stringify(obj)
-        res.send(json)
-        locations = []
+
+        result.then(() => {
+            const obj = hotspot.gethotspot(locationX, locationY, distance, locations)
+            const json = JSON.stringify(obj)
+            res.send(json)
+        })
     })
 
 module.exports = router

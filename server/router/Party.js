@@ -57,30 +57,39 @@ router.route('/')
         const reqdistance = req.query.distance //一定距離
         let objects = []
         try {
-            // 一定距離以内のPratyを確認
-            ref.on('child_added', (snapshot) => {
-                const locationX = snapshot.val().locationX
-                const locationY = snapshot.val().locationY
-                if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
+            const result = new Promise((resolve) => {
+                // 一定距離以内のPratyを確認
+                ref.on('child_added', (snapshot) => {
                     const locationX = snapshot.val().locationX
                     const locationY = snapshot.val().locationY
-                    const owner = snapshot.val().owner
-                    const kind = snapshot.val().kind
-                    const message = snapshot.val().message
-                    const due = snapshot.val().due
-                    const snap = {
-                        "locationX": locationX,
-                        "locationY": locationY,
-                        "owner": owner,
-                        "kind": kind,
-                        "message": message,
-                        "due": due
+                    if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
+                        const locationX = snapshot.val().locationX
+                        const locationY = snapshot.val().locationY
+                        const owner = snapshot.val().owner
+                        const kind = snapshot.val().kind
+                        const message = snapshot.val().message
+                        const due = snapshot.val().due
+                        const title = snapshot.val().title
+                        const snap = {
+                            "locationX": locationX,
+                            "locationY": locationY,
+                            "owner": owner,
+                            "kind": kind,
+                            "message": message,
+                            "due": due,
+                            "title": title
+                        }
+                        objects.push(snap)
+                        resolve()
                     }
-                    objects.push(snap)
-                }
+                })
             })
-            const json = JSON.stringify(objects)
-            res.send(json)
+
+            result.then(() => {
+                const json = JSON.stringify(objects)
+                res.send(json)
+            })
+
         } catch (error) { res.send("error") }
     })
 
@@ -97,6 +106,7 @@ router.route('/')
         dueday : "XXXX"
         duemonth : "XXXX"
         dueyear : "XXXX"
+        title: "XXXXX"
         }
         */
 
@@ -109,6 +119,7 @@ router.route('/')
         const dueday = req.body.dueday
         const duemonth = req.body.duemonth
         const dueyear = req.body.dueyear
+        const title = req.body.title
 
         try {
             const PartyKey = ref.push().key
@@ -121,9 +132,12 @@ router.route('/')
                 dueday: dueday,
                 duemonth: duemonth,
                 dueyear: dueyear,
-                PartyKey: PartyKey
+                PartyKey: PartyKey,
+                title: title
+            }, (error) => {
+                if (error) res.send("error")
+                else res.send("success")
             })
-            res.send("success")
         } catch (error) { res.send("error") }
     })
 
@@ -139,19 +153,24 @@ router.route('/')
         const ref = db.ref("/Party")
         // 期限切れのPartyを検索・削除
         try {
-            ref.on('child_added', (snapshot) => {
-                const PartyKey = snapshot.val().PartyKey
-                const year = snapshot.val().dueyear
-                const month = snapshot.val().duemonth
-                const day = snapshot.val().duedate
-                const due = moment({
-                    year: year,
-                    month: month,
-                    day: day
+            const result = new Promise((resolve) => {
+                ref.on('child_added', (snapshot) => {
+                    const PartyKey = snapshot.val().PartyKey
+                    const year = snapshot.val().dueyear
+                    const month = snapshot.val().duemonth
+                    const day = snapshot.val().duedate
+                    const due = moment({
+                        year: year,
+                        month: month,
+                        day: day
+                    })
+                    if (moment(due).isAfter(Todate)) {
+                        ref.child(PartyKey).remove()
+                        resolve()
+                    }
                 })
-                if (moment(due).isAfter(Todate)) ref.child(PartyKey).remove()
             })
-            res.send("success")
+            result.then(() => res.send("success"))
         } catch (error) { res.send("error") }
     })
 

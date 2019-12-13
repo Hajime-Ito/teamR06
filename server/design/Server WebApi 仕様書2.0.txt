@@ -1,48 +1,53 @@
 /*
+ルートURL：https://p2hack2019-4f273.firebaseapp.com
 12/10 Hajime, Server側から今の段階で提示できること
+12/11 Hajime, Server側のリクエストとレスポンス情報を追加、必要な関数を提案
 */
-
-Server WebApi 仕様書2.0
-
+Server WebApi 仕様書3.0
 書式：　戻り値 関数名(引数)
-
-!# Serverが必要だと思う関数
-
-   定義*客観的TreePot情報(Map表示のために必要なTreePot情報)
-   定義*主観的TreePot情報(自分が作成したTreePotを再接続するときに必要な情報)   
-   定義*セッション関数とは植木鉢を追加関数と同じ
-   
-   木を作成する関数(POST) /Tree POST
-   主観的TreePot情報のリクエスト関数(GET) /TreePot GET
-   主観的TreePotのセッション情報削除リクエスト関数(DELETE) /TreePot DELETE
-   植木鉢(TreePot)を追加に関しては、
-   TreePotの再セッション関数(ただのセッション関数からなる)(POST)と
-   新規セッション関数(木を作成する関数とセッション関数からなる)(POST, POST)が必要
-
+# New Method
+   //植木鉢セッションを終了
+   void StopTreePotSession()
+   /TreePot DELETE
+   //自分の持つ植木鉢情報を取得
+   ({TreeKey, locationX, locationY, isNear, TreeName}...) GetMyTreePot({owner(pid), locationX, locationY, distance})
+   /TreePot GET
+   //Partyを追加
+   void PostParty(locationX, locationY, owner(pid), kind, message, dueday, duemonth, dueyear, title)
+   /Party POST
+   //Tree(実態)の作成
+   TreeKey MakeTree(locationX, locationY, owner(pid), TreeName)
+   /Tree POST  
 # Upload
-
    //ユーザの情報をアップロード
-   void User(locationX, locationY, pid) /Account POST
+   void User(locationX, locationY, pid) 
+   /Account POST
    //デコレーション追加
    void NewDecoration(TreeKey,kind,posX,posY,message)
-   //植木鉢を追加
-   void NewTreePotOwner(pid) /TreePot POST
-   //植木鉢を育てる
-   void GrowPotSpot(TreeKey) /Tree PUT
-
+   //植木鉢セッションを開始
+   void NewTreePotOwner(locationX, locationY, TreeKey) 
+   /TreePot POST
+   //植木鉢にポイントを加算
+   void GrowPotSpot(TreeKey) 
+   /Tree PUT
 # DownLoad
-
    //匿名認証、これだけファイアベースから直に取得
-   uid GetUid() //Nul
+   uid GetUid() 
+   !/*Nul*/
    //uidからpidを取得
-   pid GetPid(uid) /Account GET
+   pid GetPid(uid) 
+   /Account GET
    //現在位置から、一定距離内のTreePotのリストを取得 
-   ({TreeKey, locationX, locationY}...) TreePot(locationX, locationY) /TreePot/View GET
+   ({TreeKey, locationX, locationY}...) TreePot(locationX, locationY, distance) 
+   /TreePot/View GET
    //現在位置から、サーバが計算した一定距離内のHotSpotのリストを取得
-   ({locationX, locationY}...) HotSpot(locationX, locationY)
+   ({locationX, locationY}...) HotSpot(locationX, locationY, distance)
+   /HotSpot GET
    //現在位置から、一定距離内のTreeのリストを取得
-   ({locationX, locationY, owner, point, TreeKey}...) Tree(locationX, locationY) /Tree GET
+   ({locationX, locationY, owner(pid), point, TreeKey, TreeName}...) Tree(locationX, locationY, distance) 
+   /Tree GET
    //TreeKeyから対応するTreeのデコレーションのリストを取得
    ({kind, posX, posY, timestamp, message}...) Decoration(TreeKey)
    //現在位置から、一定距離内のPartyのリストを取得
-   ({due, owner, message, kind, locationX, locationY}...) Party(locationX, locationY)
+   ({duedate, dueyear, duemonth, owner(pid), message, kind, title, locationX, locationY}...) Party(locationX, locationY, distance) 
+   /Party GET

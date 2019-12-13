@@ -18,8 +18,6 @@ app.use(bodyParser.json())
 
 const router = express.Router()
 
-let objects = [] // JSONを返す際の連想配列を格納する配列
-
 router.use(function Auth(req, res, next) {
     //login確認処理
     /*const token = req.headers// headerのlogin tokenを受け取る
@@ -43,51 +41,60 @@ router.route('/')
         /*
         REQ Query
         {
-        pid: "XXXX"
+        owner: "XXXX"
         locationX: "XXXX"
         locationY: "XXXX"
         distance: "XXXX"
         }
         */
         try {
+            let objects = [] // JSONを返す際の連想配列を格納する配列
             const reqlocationX = req.query.locationX
             const reqlocationY = req.query.locationY
             const reqdistance = req.query.distance //一定距離
-            const pid = req.body.pid
+            const pid = req.query.owner
             //自分の作成したTreeのパス
-            let ref = db.ref('/Tree').orderByChild("owner").equalTo(pid)
-            // 一定距離内の自分の作成したTree情報を格納する
-            ref.once('value', (snapshot) => {
-                const locationX = snapshot.val().locationX
-                const locationY = snapshot.val().locationY
-                const TreeKey = snapshot.val().TreeKey
-                const TreeName = snapshot.val().TreeName
+            //let ref = db.ref('/Tree').orderByChild("owner").equalTo(pid)
+            const ref = db.ref('/Tree')
 
-                if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
-                    //一定距離の中に入っている自分の作成したTree
-                    const snap = {
-                        "TreeName": TreeName,
-                        "TreeKey": TreeKey,
-                        "locationX": locationX,
-                        "locationY": locationY,
-                        "isNear": true
-                    }
-                    objects.push(snap)
-                } else {
-                    //一定距離の中に入っていない自分の作成したTree
-                    const snap = {
-                        "TreeName": TreeName,
-                        "TreeKey": TreeKey,
-                        "locationX": locationX,
-                        "locationY": locationY,
-                        "isNear": false
-                    }
-                    objects.push(snap)
+            // objectにpushする関数
+            let pushobject = (TreeName, TreeKey, locationX, locationY, bool) => {
+                const snap = {
+                    "TreeName": TreeName,
+                    "TreeKey": TreeKey,
+                    "locationX": locationX,
+                    "locationY": locationY,
+                    "isNear": bool
                 }
+                objects.push(snap)
+            }
+
+            const result = new Promise((resolve) => {
+                // 一定距離内の自分の作成したTree情報を格納する
+                ref.on('child_added', (snapshot) => {
+                    if (snapshot.val().owner == pid) {
+                        const locationX = snapshot.val().locationX
+                        const locationY = snapshot.val().locationY
+                        const TreeKey = snapshot.val().TreeKey
+                        const TreeName = snapshot.val().TreeName
+
+                        if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
+                            //一定距離の中に入っている自分の作成したTree
+                            pushobject(TreeName, TreeKey, locationX, locationY, true)
+                        } else {
+                            //一定距離の中に入っていない自分の作成したTree
+                            pushobject(TreeName, TreeKey, locationX, locationY, false)
+                        }
+                        resolve()
+                    }
+                })
             })
 
-            const json = JSON.stringify(objects)
-            res.send(json)
+            result.then(() => {
+                const json = JSON.stringify(objects)
+                //console.log(json)
+                res.send(json)
+            })
         } catch (error) { res.end("error") }
     })
 
@@ -110,8 +117,10 @@ router.route('/')
                 locationX: reqlocationX,
                 locationY: reqlocationY,
                 TreeKey: TreeKey
+            }, (error) => {
+                if (error) res.send("error")
+                else res.send("success")
             })
-            res.send("success")
         } catch (error) {
             res.send("error")
         }
@@ -128,11 +137,15 @@ router.route('/')
         */
 
         const TreeKey = req.query.TreeKey
-        const ref = db.ref('/TreePot').orderByChild("TreeKey").equalTo(TreeKey)
+        const ref = db.ref('/TreePot')
         try {
-            //TreePotのデータを削除
-            ref.remove()
-            res.send("success")
+            ref.on("child_added", (snapshot) => {
+                if (snapshot.val().TreeKey == TreeKey) {
+                    //TreePotのデータを削除
+                    ref.remove()
+                    res.send("success")
+                }
+            })
         } catch (error) {
             res.send("error")
         }
@@ -140,7 +153,7 @@ router.route('/')
 
 router.route('/View')
     // 一定距離内のTreePotを返す
-    .get((req, res) => {
+    .get(async (req, res) => {
         /*
         REQ Query
         {
@@ -150,26 +163,35 @@ router.route('/View')
         }
         */
         const ref = db.ref("/TreePot")
+        let objects = [] // JSONを返す際の連想配列を格納する配列
         try {
-
             const reqlocationX = req.query.locationX
             const reqlocationY = req.query.locationY
             const reqdistance = req.query.distance //一定距離
 
             // 一定距離内のTreePot情報を格納する
-            ref.on('child_added', (snapshot) => {
-                const locationX = snapshot.val().locationX
-                const locationY = snapshot.val().locationY
-                const TreeKey = snapshot.val().TreeKey
-                const snap = {
-                    "locationX": locationX,
-                    "locationY": locationY,
-                    "TreeKey": TreeKey,
-                }
-                if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) objects.push(snap)
+            const result = new Promise((resolve) => {
+                ref.on('child_added', (snapshot) => {
+                    const locationX = snapshot.val().locationX
+                    const locationY = snapshot.val().locationY
+                    const TreeKey = snapshot.val().TreeKey
+                    const snap = {
+                        "locationX": locationX,
+                        "locationY": locationY,
+                        "TreeKey": TreeKey,
+                    }
+                    if (distancejs.distance(reqlocationX, reqlocationY, locationX, locationY, reqdistance)) {
+                        objects.push(snap)
+                        //console.log(snap)
+                        resolve()
+                    }
+                })
             })
-            const json = JSON.stringify(objects)
-            res.send(json)
+            result.then(() => {
+                const json = JSON.stringify(objects)
+                res.send(json)
+                //console.log("responce")
+            })
         } catch (error) { res.end("error") }
     })
 

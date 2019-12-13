@@ -50,12 +50,14 @@ router.route('/')
             ref.child(uid).set({
                 pid: pid,
                 uid: uid
+            }, (error) => {
+                if (error) res.send("error")
+                else {
+                    const obj = { "pid": pid }
+                    const json = JSON.stringify(obj)
+                    res.send(json)
+                }
             })
-            const obj = {
-                "pid": pid
-            }
-            const json = JSON.stringify(obj)
-            res.send(json)
         } catch (error) { res.send("error") }
     })
 
@@ -79,8 +81,10 @@ router.route('/')
                 pid: pid,
                 locationX: locationX,
                 locationY: locationY
+            }, (error) => {
+                if (error) res.send("error")
+                else res.send("success")
             })
-            res.send("success")
         } catch (error) { res.send("error") }
     })
 
