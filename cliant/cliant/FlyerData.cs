@@ -11,14 +11,14 @@ namespace cliant
     }
     class FlyerData
     {
-        DateTime date { set; get; }
-        string text { set; get; }
-        double locationX { set; get; }
-        double locationY { set; get; }
-        string locationName { set; get; }
-        FlyerCategory category { set; get; }
-        Stream attachedFile { set; get; }
-        string ID { set; get; }
+        public DateTime Date { set; get; }
+        public string Text { set; get; }
+        public double LocationX { set; get; }
+        public double LocationY { set; get; }
+        public string LocationName { set; get; }
+        public FlyerCategory Category { set; get; }
+        public Stream AttachedFile { set; get; }
+        public string ID { set; get; }
 
         public bool EqualsIdentity(FlyerData flyerData)
         {

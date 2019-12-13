@@ -4,32 +4,32 @@ using System.Text;
 
 namespace cliant
 {
-
+    //例外処理追加
     class FlyerManager
     {
-        //myFlyerDatasから自分が持っているIDを求める
         string[] myFlyerIDs;
         string[] reqFlyerIDs;
         Dictionary<string, FlyerData> myFlyerIDsandDatas;
 
         void SendManagerData()
         {
+            string[] reqedIDs;
 
             BluetoothManager.SendIDs(myFlyerIDs);
 
-            reqFlyerIDs = BluetoothManager.GetReqIDs();
+            reqedIDs = BluetoothManager.GetReqIDs();
 
             List<FlyerData> reDatas = new List<FlyerData>();
             foreach(KeyValuePair<string,FlyerData> p in myFlyerIDsandDatas)
             {
-                if (Array.IndexOf(reqFlyerIDs, p.Key) >= 0)
+                if (Array.IndexOf(reqedIDs, p.Key) >= 0)
                 {
                     reDatas.Add(p.Value);
                 }
             }
 
-            FlyerData[] Datas = reDatas.ToArray();
-            BluetoothManager.SendDatas(Datas);
+            FlyerData[] datas = reDatas.ToArray();
+            BluetoothManager.SendDatas(datas);
 
         }
 
@@ -49,8 +49,12 @@ namespace cliant
             }
 
             reqFlyerIDs = result.ToArray();
+            if (reqFlyerIDs.Length != 0)
+            {
+                BluetoothManager.SendReqIDs(reqFlyerIDs);
+            }
 
-            BluetoothManager.SendReqIDs(reqFlyerIDs);
+            BluetoothManager.GetDatas();
         }
 
 
