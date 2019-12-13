@@ -9,17 +9,17 @@ namespace cliant
         float locationX { set; get; }
         float locationY { set; get; }
         int growStage { set; get; }
-        int decoration { set; get; }
+        List<Decoration> decorations { set; get; }
         int point { set; get; }
         int NumofHuman { set; get; }
         float time { set; get; }
         int decoMax { set; get; }
-        TreeData(float locationX, float locationY, int growStage, int decoration, int point, int NumofHuman, float time, int decoMax)
+        TreeData(float locationX, float locationY, int growStage, List<Decoration> decorations, int point, int NumofHuman, float time, int decoMax)
         {
             this.locationX = locationX;
             this.locationY = locationY;
             this.growStage = growStage;
-            this.decoration = decoration;
+            this.decorations = decorations;
             this.point = point;
             this.NumofHuman = NumofHuman;
             this.time = time;
