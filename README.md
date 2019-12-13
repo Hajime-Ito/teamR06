@@ -26,9 +26,10 @@
 - クライアントサイド
      - フロント：Xamarin.Forms
      - バック：.Net Core, Xamarin
-     - ASP.NET Core
-     - Geolocator
-     - Xamarin.Forms.GoogleMaps
+     - Xamarin.Forms.GoogleMaps（地図）
+     - Xam.Plugin.SimpleAudioPlayer（音声再生）
+     - Microsoft.AspNet.WebApi.Client（Http通信）
+     - Xamarin.Essentials（位置情報、バイブレーションなど）
 
 ### その他開発に使用したツール
 - Visual Studio
@@ -37,6 +38,7 @@
 - Node.js command prompt
 - gitbash
 - cron
+- Cubase6.5（bgm作成用）
 
 ## 役割分担
 - 伊藤　壱(サーバ)
