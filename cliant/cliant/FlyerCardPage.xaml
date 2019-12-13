@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:cliant.Controls"
+             mc:Ignorable="d"
+             x:Class="cliant.FlyerCardPage"
+             Padding="10">
+    <ScrollView>
+        <StackLayout>
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="複合商業施設「ハコビバ」点灯式"
+                               CardDescription="12/1にJR函館駅前に開業する「ハコビバ」。ホテル、函館駅前横丁のほか、スポーツジム、コンビニ、飲食店な..."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png" />
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="北海道新幹線で冬の東北へ！PRステージ"
+                               CardDescription="冬ならではの見所やおすすめのグルメなど、北海道新幹線で思わず行きたくなる東北の魅力をご..."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png" />
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="ひろさきナイト"
+                               CardDescription="弘前城ミス桜とお米アイドル『ライスボール』による観光ＰＲ、津軽三味線の生演奏を行..."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png" />
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="みなみ北海道観光DAY"
+                               CardDescription="みなみ北海道各地の魅力が大集合する、観光PRステージ。クイズ大会や各市町自慢の商品が当た..."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png" />
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="ファンタスティック・イヴ"
+                               CardDescription="FMいるかの開局記念日であるこの日は、シンガーソングエンターテイナー「ハジ→」による..."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

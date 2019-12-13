@@ -12,6 +12,8 @@
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterItem}">
                     <local:MasterItem Title="Home" IconSource="home.png" TargetType="{x:Type local:Home}"/>
+                    <local:MasterItem Title="FlyerCardPage" IconSource="flyercardpage.png" TargetType="{x:Type local:FlyerCardPage}"/>
+                    <local:MasterItem Title="FlyerFormPage" IconSource="flyerformpage.png" TargetType="{x:Type local:FlyerFormPage}"/>
                 </x:Array>
             </ListView.ItemsSource>
 

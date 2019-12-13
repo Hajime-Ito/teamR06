@@ -1002,3 +1002,8 @@ C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\s
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\res\mipmap-hdpi\icon_demo1.png
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\res\mipmap-mdpi\icon_demo1.png
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\res\mipmap-xhdpi\icon_demo1.png
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\res\mipmap-xxhdpi\icon_demo1.png
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant.Android\obj\Debug\90\res\mipmap-xxxhdpi\icon_demo1.png

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.cliant">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.cliant" android:installLocation="auto">
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <application android:label="cliant.Android" android:name="crc64aaa3643aee6b9b7b.GoogleMapsSettings" android:allowBackup="true" android:icon="@mipmap/icon" android:debuggable="true">
+  <application android:label="cliant.Android" android:icon="@mipmap/icon_demo1" android:name="crc64aaa3643aee6b9b7b.GoogleMapsSettings" android:allowBackup="true" android:debuggable="true">
     <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCXCX5IfYmdkOEj1nutui_9urAmZYMvZ0U" />
-    <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/icon" android:label="cliant" android:theme="@style/MainTheme" android:name="crc64aaa3643aee6b9b7b.MainActivity">
+    <activity android:configChanges="orientation|screenSize" android:icon="@mipmap/icon_demo1" android:label="cliant" android:theme="@style/MainTheme" android:name="crc64aaa3643aee6b9b7b.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
