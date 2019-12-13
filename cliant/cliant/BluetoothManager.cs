@@ -6,32 +6,32 @@ namespace cliant
 {
     class BluetoothManager
     {
-        public string[] GetIDs()
+        static public string[] GetIDs()
         {
             throw new NotImplementedException();
         }
 
-        public string[] GetReqIDs()
+        static public string[] GetReqIDs()
         {
             throw new NotImplementedException();
         }
 
-        public FlyerData[] GetDatas()
+        static public FlyerData[] GetDatas()
         {
             throw new NotImplementedException();
         }
 
-        public void SendIDs(string[] ids)
+        static public void SendIDs(string[] ids)
         {
             throw new NotImplementedException();
         }
 
-        public void SendReqIDs(string[] reqIds)
+        static public void SendReqIDs(string[] reqIds)
         {
             throw new NotImplementedException();
         }
 
-        public void SendDatas(FlyerData[] flyerDatas)
+        static public void SendDatas(FlyerData[] flyerDatas)
         {
             throw new NotImplementedException();
         }
