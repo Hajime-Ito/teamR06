@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:cliant"
+             mc:Ignorable="d"
+             x:Class="cliant.MasterPage"
+             Title="Personal Organiser">
+    <StackLayout>
+        <ListView x:Name="listView" x:FieldModifier="public">
+            <!--リソースの指定-->
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type local:ThemeItem}">
+                    <local:ThemeItem Title="Example" IconSource="example.png" TargetType="{x:Type local:ExamplePage}" />
+                </x:Array>
+            </ListView.ItemsSource>
+
+            <!--デザイン&要素の配置を行う-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding IconSource}" />
+                            <Label Grid.Column="1" Text="{Binding Title}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
