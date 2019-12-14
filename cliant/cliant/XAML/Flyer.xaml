@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cliant.Flyer">
+    <ContentPage.Content>
+
+        <ListView x:Name="FlyerList" HasUnevenRows="true" SeparatorVisibility="None" SelectionMode="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BorderColor="#069688" CornerRadius="5" Padding="30" Margin="30">
+                            <StackLayout  HorizontalOptions="FillAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding Title}" TextColor="#000000" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                <BoxView Color="#ff4747" HeightRequest="2" HorizontalOptions="Fill" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="開催日時: " TextColor="Black"/>
+                                    <Label Text="{Binding Date}" TextColor="Black"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="開催場所: " TextColor="Black"/>
+                                    <Label Text="{Binding Place}" TextColor="Black"/>
+                                </StackLayout>
+                                <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
+                                <Label Text="{Binding Text}" TextColor="#000000" FontSize="Small"/>
+                                <Label Text="{Binding Categoly}" TextColor="Gray" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
