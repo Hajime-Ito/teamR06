@@ -69,13 +69,15 @@ router.route('/')
                         const message = snapshot.val().message
                         const time = snapshot.val().time
                         const FlyerKey = snapshot.val().FlyerKey
+                        //const picstring = snapshot.val().picstring
                         const snap = {
                             "year": year,
                             "month": month,
                             "date": date,
                             "message": message,
                             "time": time,
-                            "FlyerKey": FlyerKey
+                            "FlyerKey": FlyerKey,
+                            //"picstring": picstring
                         }
                         objects.push(snap)
                         resolve()
@@ -100,9 +102,11 @@ router.route('/')
         message: "xxxx",
         time: "xxxx",
         locationX: "xxxx",
-        locationY: "xxxxx"
+        locationY: "xxxxx",
+        ??picstring: "XXXX"
         } 
         */
+        const picstring = req.pody.pic
         const year = req.body.year
         const month = req.body.month
         const date = req.body.date
@@ -122,7 +126,8 @@ router.route('/')
                 time: time,
                 locationX: locationX,
                 locationY: locationY,
-                FlyerKey: FlyerKey
+                FlyerKey: FlyerKey,
+                //picstring: picstring
             }, (error) => {
                 if (error) res.send("error")
                 else {

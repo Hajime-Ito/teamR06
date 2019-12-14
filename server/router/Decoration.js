@@ -47,17 +47,17 @@ router.route('/')
             let object = []
 
             const result = new Promise((resolve) => {
-                ref.child(TreeKey).once("value", (snapshot) => {
-                    const posx = snapshot.val().posx
-                    const posy = snapshot.val().posy
+                ref.child(TreeKey).on("child_added", (snapshot) => {
+                    const posX = snapshot.val().posX
+                    const posY = snapshot.val().posY
                     const message = snapshot.val().message
                     const kind = snapshot.val().kind
                     const date = snapshot.val().date
                     const month = snapshot.val().month
                     const year = snapshot.val().year
                     const snap = {
-                        "posx": posx,
-                        "posy": posy,
+                        "posX": posX,
+                        "posY": posY,
                         "message": message,
                         "kind": kind,
                         "date": date,
