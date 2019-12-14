@@ -29,9 +29,9 @@ namespace cliant
         }
     }
 
-    static class ImageLoader
+    public static class ImageLoader
     {
-        static bool TryLoad(out Image image)
+        public static bool TryLoad(out Image image)
         {
             bool ret = false;
             var roadImage = new Image(null);
