@@ -61,6 +61,16 @@ namespace cliant
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, value);
             return response.IsSuccessStatusCode;
         }
+
+        /// <summary>
+        /// Http送信関数。<typeparamref name="ArgT"/>型の<paramref name="value"/>をJsonとして<paramref name="path"/>にPostし、
+        /// 成功したかと、<typeparamref name="RetT"/>型の結果を返します。
+        /// </summary>
+        /// <typeparam name="RetT"></typeparam>
+        /// <typeparam name="ArgT"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public async static Task<Success<RetT>> Post<RetT, ArgT>(ArgT value, string path) where RetT : class
         {
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, value);
