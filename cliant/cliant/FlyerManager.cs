@@ -7,41 +7,33 @@ namespace cliant
     //例外処理追加
     class FlyerManager
     {
-        string[] myFlyerIDs;
-        string[] reqFlyerIDs;
-        List<FlyerData> myFlyerIDsandDatas;
+        public List<FlyerData> MyFlyers { get; private set; } = new List<FlyerData>();
 
         public void GetManagerData(double locateX, double locateY, double distance)
         {
-            string[] yourFlyerIDs;
-            List<string> result;
+            ServerData.SFlyerData[] result;
             var val = AppServerManager.GetFlyeies(locateX, locateY, distance);
             if (val.IsSuccess)
             {
-                result = val.Value.
+                result = val.Value.ToArray();
             }
             else
             {
-                result = new List<string>();
+                result = new ServerData.SFlyerData[0];
             }
 
-            foreach (string s in myFlyerIDs)
+            foreach (var s in result)
             {
-                if (Array.IndexOf(yourFlyerIDs, s)<0)
+                if(!MyFlyers.Any(f => f.Id == s.FlyerKey))
                 {
-                    result.Add(s);
+                    MyFlyers.Add(new FlyerData()
+                    {
+                        Id = s.FlyerKey,
+                        Date = new DateTime(s.year,s.month,s.date),
+                        Text = s.message
+                    });
                 }
             }
-
-            reqFlyerIDs = result.ToArray();
-            if (reqFlyerIDs.Length != 0)
-            {
-                BluetoothManager.SendReqIDs(reqFlyerIDs);
-            }
-
-            BluetoothManager.GetDatas();
         }
-
-
     }
 }
