@@ -12,7 +12,7 @@
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterItem}">
                     <local:MasterItem Title="ホーム" IconSource="home.png" TargetType="{x:Type local:Home}"/>
-                    <local:MasterItem Title="チラシ一覧" IconSource="flyercardpage.png" TargetType="{x:Type local:FlyerCardPage}"/>
+                    <local:MasterItem Title="チラシ一覧" IconSource="flyercardpage.png" TargetType="{x:Type local:Flyer}"/>
                     <local:MasterItem Title="チラシ作成" IconSource="flyerformpage.png" TargetType="{x:Type local:FlyerFormPage}"/>
                     <local:MasterItem Title="パーティー作成" IconSource="partyformpage.png" TargetType="{x:Type local:PartyFormPage}"/>
                     <local:MasterItem Title="TreeAnimationPage" IconSource="treeanimationpage.png" TargetType="{x:Type local:TreeAnimationPage}"/>
