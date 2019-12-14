@@ -23,7 +23,7 @@ Server WebApi 仕様書3.0
    void User(locationX, locationY, pid) 
    /Account POST
    //デコレーション追加
-   void NewDecoration(TreeKey,kind,posX,posY,message)
+   void NewDecoration(TreeKey,kind,posX,posY,message, date, month, year)
    //植木鉢セッションを開始
    void NewTreePotOwner(locationX, locationY, TreeKey) 
    /TreePot POST
@@ -47,7 +47,7 @@ Server WebApi 仕様書3.0
    ({locationX, locationY, owner(pid), point, TreeKey, TreeName}...) Tree(locationX, locationY, distance) 
    /Tree GET
    //TreeKeyから対応するTreeのデコレーションのリストを取得
-   ({kind, posX, posY, timestamp, message}...) Decoration(TreeKey)
+   ({kind, posX, posY, message, date, month, year}...) Decoration(TreeKey)
    //現在位置から、一定距離内のPartyのリストを取得
    ({duedate, dueyear, duemonth, owner(pid), message, kind, title, locationX, locationY}...) Party(locationX, locationY, distance) 
    /Party GET
