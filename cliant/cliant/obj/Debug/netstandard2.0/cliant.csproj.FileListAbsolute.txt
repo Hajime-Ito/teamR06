@@ -34,3 +34,6 @@ C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XAML\PartyFormPage.xaml.g.cs
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XAML\PartyFormTimePage.xaml.g.cs
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XAML\PartyFormConfirmPage.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XAML\TreeFormPage.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\Controls\ListItemView.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\XAML\SettingsPage.xaml.g.cs

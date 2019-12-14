@@ -13,6 +13,8 @@ namespace cliant
     [DesignTimeVisible(false)]
     public partial class MainPage : MasterDetailPage
     {
+        MasterItem globalItem;
+
         public MainPage()
         {
             InitializeComponent();
@@ -23,13 +25,18 @@ namespace cliant
         void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MasterItem;
+            globalItem = item;
+
             if (item != null)
             {
-                Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));                
+                var nav = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+
+                nav.BarBackgroundColor = Color.FromHex("FF0000");
+                Detail = nav;
                 
                 masterPage.listView.SelectedItem = null;
                 IsPresented = false;
             }
-        }
+        }        
     }
 }
