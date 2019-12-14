@@ -313,7 +313,7 @@ namespace cliant
 
         #region HotSpot
 
-        public static Success<IEnumerable<SHotSpotData>> GetHotSpots(double locationX, double locationY, double distance)
+        public static Success<SHotSpotData[]> GetHotSpots(double locationX, double locationY, double distance)
         {
             var arg = new SLocationAndDistance()
             {
@@ -322,7 +322,7 @@ namespace cliant
                 locationY = locationY,
             };
 
-            return ServerDataManager.Get<IEnumerable<SHotSpotData>, SLocationAndDistance>(arg, paths[KnownPaths.HotSpot]);
+            return ServerDataManager.Get<SHotSpotData[], SLocationAndDistance>(arg, paths[KnownPaths.HotSpot]);
         }
 
         #endregion
@@ -374,7 +374,7 @@ namespace cliant
 
             return ServerDataManager.Put<SUpdateFlyer>(arg, paths[KnownPaths.Flyer]);
         }
-        public static Success<SFlyerData> GetFlyeies(double locationX, double locationY, double distance)
+        public static Success<SFlyerData[]> GetFlyeies(double locationX, double locationY, double distance)
         {
             var arg = new SLocationAndDistance()
             {
@@ -383,7 +383,7 @@ namespace cliant
                 distance = distance
             };
 
-            return ServerDataManager.Get<SFlyerData, SLocationAndDistance>(arg, paths[KnownPaths.Flyer]);
+            return ServerDataManager.Get<SFlyerData[], SLocationAndDistance>(arg, paths[KnownPaths.Flyer]);
         }
     #endregion
 
