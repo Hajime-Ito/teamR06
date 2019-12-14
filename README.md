@@ -3,11 +3,12 @@
 ## プロダクト
 
 ### コンセプト
-
+- クリスマスを楽しみながら、自身の行動圏内のクリスマス情報に簡単にアクセスできるようにする
 ### 説明
-
+1. 位置情報ゲーム
+2. 
 ### 推しポイント
-
+#### 位置情報ゲームを楽しみながら、自然にクリスマス情報を共有してしまうシステム
 ## 開発技術
 
 ### 利用したプログラミング言語
@@ -16,13 +17,13 @@
 
 ### 利用したフレームワーク・ライブラリ
 - サーバーサイド
-     - FirebaseのcloudfunctionをAPIサーバーに見立てて開発
+     - FirebaseのcloudfunctionをRESTAPIサーバーに見立てて開発
      - Authentication,RealtimeDatabaseを使用
      - Express
      - moment.js moment-timezone
      - body-parser
      - Bignumber
-
+     - [その他システム・データ構造](https://github.com/p2hacks/teamR06/wiki/Server-Room)
 - クライアントサイド
      - フロント：Xamarin.Forms
      - バック：.Net Core, Xamarin
