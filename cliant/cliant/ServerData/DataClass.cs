@@ -4,41 +4,41 @@ using System.Text;
 
 namespace cliant.ServerData
 {
-    public class PidOnly
+    public class SPidOnly
     {
         public string pid { get; set; }
     }
 
-    public class UidOnly
+    public class SUidOnly
     {
         public string uid { get; set; }
     }
 
-    public class FlyerKeyOnly
+    public class SFlyerKeyOnly
     {
         public string FlyerKey { get; set; }
     }
 
-    public class TreeKeyOnly
+    public class STreeKeyOnly
     {
         public string TreeKey { get; set; }
     }
 
-    public class UpdateUser
+    public class SUpdateUser
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public string pid { get; set; }
     }
 
-    public class TreePot
+    public class STreePot
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public string TreeKey { get; set; }
     }
 
-    public class MyTreePot
+    public class SMyTreePot
     {
         public string TreeKey { get; set; }
         public double locationX { get; set; }
@@ -47,21 +47,21 @@ namespace cliant.ServerData
         public string TreeName { get; set; }
     }
 
-    public class GetMyTreePot {
+    public class SGetMyTreePot {
         public string owner { get; set; }
         public double locationX { get; set; }
         public double locationY { get; set; }
         public double distance { get; set; }
     }
 
-    public class LocationAndDistance
+    public class SLocationAndDistance
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public double distance { get; set; }
     }
 
-    public class MakeTree
+    public class SMakeTree
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
@@ -69,7 +69,7 @@ namespace cliant.ServerData
         public string TreeName { get; set; }
     }
 
-    public class TreeData
+    public class STreeData
     {
         public string TreeKey { get; set; }
         public double locationX { get; set; }
@@ -79,7 +79,7 @@ namespace cliant.ServerData
         public int point { get; set; }
     }
 
-    public class PartyData
+    public class SPartyData
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
@@ -92,14 +92,14 @@ namespace cliant.ServerData
         public string title { get; set; }
     }
 
-    public class HotSpotData
+    public class SHotSpotData
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public int n { get; set; }
     }
 
-    public class DecorationData
+    public class SDecorationData
     {
         public int kind { get; set; }
         public int posX { get; set; }
@@ -109,7 +109,7 @@ namespace cliant.ServerData
         public int month { get; set; }
         public int year { get; set; }
     }
-    public class AddDecoration
+    public class SAddDecoration
     {
         public string TreeKey { get; set; }
         public int kind { get; set; }
@@ -121,26 +121,25 @@ namespace cliant.ServerData
         public int year { get; set; }
     }
 
-    public class AddFlyer
+    public class SAddFlyer
     {
         public int year { get; set; }
         public int month { get; set; }
         public int date { get; set; }
         public string message { get; set; }
         public string time { get; set; }
-        public string FlyerKey { get; set; }
         public double locationX { get; set; }
         public double locationY { get; set; }
     }
 
-    public class UpdateFlyer
+    public class SUpdateFlyer
     {
         public string FlyerKey { get; set; }
         public double locationX { get; set; }
         public double locationY { get; set; }
     }
 
-    public class FlyerData
+    public class SFlyerData
     {
         public int year { get; set; }
         public int month { get; set; }

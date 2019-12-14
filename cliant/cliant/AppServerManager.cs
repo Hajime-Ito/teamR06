@@ -21,7 +21,8 @@ namespace cliant
             TreePot_View,
             Party,
             TreeDecoration,
-            HotSpot
+            HotSpot,
+            Flyer
         }
 
         static Dictionary<KnownPaths, string> paths = new Dictionary<KnownPaths, string>()
@@ -32,7 +33,8 @@ namespace cliant
             {KnownPaths.TreePot_View,"/TreePot/View" },
             {KnownPaths.Party,"/Party" },
             {KnownPaths.TreeDecoration,"/TreeDecoration" },
-            {KnownPaths.HotSpot,"/HotSpot" }
+            {KnownPaths.HotSpot,"/HotSpot" },
+            {KnownPaths.Flyer,"/Flyer" }
         };
 
         #region Account
@@ -41,7 +43,7 @@ namespace cliant
         /// uidを生成します
         /// </summary>
         /// <returns></returns>
-        public async static Task<Success<UidOnly>> GetUid()
+        public async static Task<Success<SUidOnly>> GetUid()
         {
             throw new NotImplementedException();
         }
@@ -55,7 +57,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> UpdateUser(double locationX, double locationY, string pid)
         {
-            var arg = new UpdateUser()
+            var arg = new SUpdateUser()
             {
                 locationX = locationX,
                 locationY = locationY,
@@ -70,14 +72,14 @@ namespace cliant
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public async static Task<Success<PidOnly>> GetPid(string uid)
+        public async static Task<Success<SPidOnly>> GetPid(string uid)
         {
-            var arg = new UidOnly()
+            var arg = new SUidOnly()
             {
                 uid = uid
             };
 
-            return await ServerDataManager.Get<PidOnly, UidOnly>(arg, paths[KnownPaths.Account]);
+            return await ServerDataManager.Get<SPidOnly, SUidOnly>(arg, paths[KnownPaths.Account]);
         }
 
         #endregion
@@ -93,7 +95,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> StartTreePotSession(double locationX, double locationY, string treeKey)
         {
-            var arg = new TreePot()
+            var arg = new STreePot()
             {
                 locationX = locationX,
                 locationY = locationY,
@@ -109,7 +111,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> StopTreePotSession(string treeKey)
         {
-            var arg = new TreeKeyOnly()
+            var arg = new STreeKeyOnly()
             {
                 TreeKey = treeKey
             };
@@ -124,16 +126,16 @@ namespace cliant
         /// <param name="locationY"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public async static Task<Success<MyTreePot[]>> GetMyTreePot(string owner, double locationX, double locationY, double distance)
+        public async static Task<Success<SMyTreePot[]>> GetMyTreePot(string owner, double locationX, double locationY, double distance)
         {
-            var arg = new GetMyTreePot()
+            var arg = new SGetMyTreePot()
             {
                 owner = owner,
                 locationX = locationX,
                 locationY = locationX,
                 distance = distance
             };
-            return await ServerDataManager.Get<MyTreePot[],GetMyTreePot>(arg, paths[KnownPaths.TreePot]);
+            return await ServerDataManager.Get<SMyTreePot[],SGetMyTreePot>(arg, paths[KnownPaths.TreePot]);
         }
 
         /// <summary>
@@ -143,15 +145,15 @@ namespace cliant
         /// <param name="locationY"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public async static Task<Success<TreePot[]>> GetTreePots(double locationX, double locationY, double distance)
+        public async static Task<Success<STreePot[]>> GetTreePots(double locationX, double locationY, double distance)
         {
-            var arg = new LocationAndDistance()
+            var arg = new SLocationAndDistance()
             {
                 locationX = locationX,
                 locationY = locationX,
                 distance = distance
             };
-            return await ServerDataManager.Get<TreePot[], LocationAndDistance>(arg, paths[KnownPaths.TreePot_View]);
+            return await ServerDataManager.Get<STreePot[], SLocationAndDistance>(arg, paths[KnownPaths.TreePot_View]);
         }
 
         #endregion
@@ -165,7 +167,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> GrowTree(string treeKey)
         {
-            var arg = new TreeKeyOnly()
+            var arg = new STreeKeyOnly()
             {
                 TreeKey = treeKey
             };
@@ -180,16 +182,16 @@ namespace cliant
         /// <param name="locationY"></param>
         /// <param name="treeName"></param>
         /// <returns></returns>
-        public async static Task<Success<TreeKeyOnly>> MakeTree(string owner, double locationX, double locationY, string treeName)
+        public async static Task<Success<STreeKeyOnly>> MakeTree(string owner, double locationX, double locationY, string treeName)
         {
-            var arg = new MakeTree()
+            var arg = new SMakeTree()
             {
                 owner = owner,
                 locationX = locationX,
                 locationY =locationY,
                 TreeName = treeName
             };
-            return await ServerDataManager.Post<TreeKeyOnly, MakeTree>(arg, paths[KnownPaths.Tree]);
+            return await ServerDataManager.Post<STreeKeyOnly, SMakeTree>(arg, paths[KnownPaths.Tree]);
         }
 
         /// <summary>
@@ -199,15 +201,15 @@ namespace cliant
         /// <param name="locationY"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public async static Task<Success<TreeData[]>> GetTrees(double locationX, double locationY, double distance)
+        public async static Task<Success<ServerData.STreeData[]>> GetTrees(double locationX, double locationY, double distance)
         {
-            var arg = new LocationAndDistance()
+            var arg = new SLocationAndDistance()
             {
                 locationX = locationX,
                 locationY = locationY,
                 distance = distance
             };
-            return await ServerDataManager.Get<TreeData[], LocationAndDistance>(arg, paths[KnownPaths.Tree]);
+            return await ServerDataManager.Get<ServerData.STreeData[], SLocationAndDistance>(arg, paths[KnownPaths.Tree]);
         }
 
         #endregion
@@ -228,7 +230,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> AddParty(double locationX, double locationY, int day, int month, int year, int kind, string message, string owner)
         {
-            var arg = new PartyData()
+            var arg = new SPartyData()
             {
                 locationX = locationX,
                 locationY = locationY,
@@ -250,16 +252,16 @@ namespace cliant
         /// <param name="locationY"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public async static Task<Success<PartyData[]>> GetParties(double locationX, double locationY, double distance)
+        public async static Task<Success<SPartyData[]>> GetParties(double locationX, double locationY, double distance)
         {
-            var arg = new LocationAndDistance()
+            var arg = new SLocationAndDistance()
             {
                 distance = distance,
                 locationX = locationX,
                 locationY = locationY,
             };
 
-            return await ServerDataManager.Get<PartyData[], LocationAndDistance>(arg, paths[KnownPaths.Party]);
+            return await ServerDataManager.Get<SPartyData[], SLocationAndDistance>(arg, paths[KnownPaths.Party]);
         }
 
         #endregion
@@ -280,7 +282,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> AddDecoration(int kind, string message, int posX, int posY, int date, int month, int year, string treeKey)
         {
-            var arg = new AddDecoration()
+            var arg = new SAddDecoration()
             {
                 TreeKey = treeKey,
                 kind = kind,
@@ -296,14 +298,14 @@ namespace cliant
         }
 
 
-        public async static Task<Success<DecorationData[]>> GetDecoration(string treeKey)
+        public async static Task<Success<SDecorationData[]>> GetDecoration(string treeKey)
         {
-            var arg = new TreeKeyOnly()
+            var arg = new STreeKeyOnly()
             {
                 TreeKey = treeKey
             };
 
-            return await ServerDataManager.Get<DecorationData[], TreeKeyOnly>(arg, paths[KnownPaths.TreeDecoration]);
+            return await ServerDataManager.Get<SDecorationData[], STreeKeyOnly>(arg, paths[KnownPaths.TreeDecoration]);
         }
 
 
@@ -311,19 +313,79 @@ namespace cliant
 
         #region HotSpot
 
-        public async static Task<Success<IEnumerable<LocationData>>> GetHotSpots(double locationX, double locationY, double distance)
+        public async static Task<Success<IEnumerable<SHotSpotData>>> GetHotSpots(double locationX, double locationY, double distance)
         {
-            var arg = new LocationAndDistance()
+            var arg = new SLocationAndDistance()
             {
                 distance = distance,
                 locationX = locationX,
                 locationY = locationY,
             };
 
-            return await ServerDataManager.Get<IEnumerable<LocationData>, LocationAndDistance>(arg, paths[KnownPaths.HotSpot]);
+            return await ServerDataManager.Get<IEnumerable<SHotSpotData>, SLocationAndDistance>(arg, paths[KnownPaths.HotSpot]);
         }
 
         #endregion
+
+        #region Flyer
+
+        /// <summary>
+        /// チラシ情報をserverに送ります。
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <param name="message"></param>
+        /// <param name="time"></param>
+        /// <param name="locationX"></param>
+        /// <param name="locationY"></param>
+        /// <returns></returns>
+        public async static Task<Success<SFlyerKeyOnly>> AddFlyer(int date, int month, int year, string message, string time, double locationX, double locationY)
+        {
+            var arg = new SAddFlyer()
+            {
+                date = date,
+                month = month,
+                year = year,
+                message = message,
+                time = time,
+                locationX = locationX,
+                locationY = locationY,
+            };
+
+            return await ServerDataManager.Post<SFlyerKeyOnly, SAddFlyer>(arg, paths[KnownPaths.Flyer]);
+        }
+
+        /// <summary>
+        /// チラシ情報を更新する
+        /// </summary>
+        /// <param name="locationX"></param>
+        /// <param name="locationY"></param>
+        /// <param name="flayerKey"></param>
+        /// <returns></returns>
+        public async static Task<bool> UpdateFlyer(double locationX, double locationY, string flayerKey)
+        {
+            var arg = new SUpdateFlyer()
+            {
+                locationX = locationX,
+                locationY = locationY,
+                FlyerKey = flayerKey
+            };
+
+            return await ServerDataManager.Put<SUpdateFlyer>(arg, paths[KnownPaths.Flyer]);
+        }
+        public async static Task<Success<SFlyerData>> GetFlyeies(double locationX, double locationY, double distance)
+        {
+            var arg = new SLocationAndDistance()
+            {
+                locationX = locationX,
+                locationY = locationY,
+                distance = distance
+            };
+
+            return await ServerDataManager.Get<SFlyerData, SLocationAndDistance>(arg, paths[KnownPaths.Flyer]);
+        }
+    #endregion
 
 }
 }
