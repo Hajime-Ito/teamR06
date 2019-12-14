@@ -90,5 +90,28 @@ namespace cliant.ServerData
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
+        public int n { get; set; }
+    }
+
+    class DecorationData
+    {
+        public int kind { get; set; }
+        public int posX { get; set; }
+        public int posY { get; set; }
+        public string message { get; set; }
+        public int date { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
+    }
+    class AddDecoration
+    {
+        public string TreeKey { get; set; }
+        public int kind { get; set; }
+        public int posX { get; set; }
+        public int posY { get; set; }
+        public string message { get; set; }
+        public int date { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
     }
 }
