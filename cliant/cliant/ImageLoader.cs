@@ -19,13 +19,32 @@ namespace cliant
         {
             Stream = stream;
         }
+
         public Stream Stream { get; }
+
         public ImageSource ImageSouce
         {
             get
             {
                 return ImageSource.FromStream(() => { return Stream; }); 
             }
+        }
+
+        public string ToBase64String()
+        {
+            byte[] bytes = null;
+            using (var memoryStream = new MemoryStream())
+            {
+                Stream.CopyTo(memoryStream);
+                bytes = memoryStream.ToArray();
+            }
+
+           return Convert.ToBase64String(bytes);
+        }
+
+        public static Image FromBass64String(string str)
+        {
+            return new Image(new MemoryStream(Convert.FromBase64String(str)));
         }
     }
 
