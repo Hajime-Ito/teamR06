@@ -17,8 +17,6 @@ app.use(bodyParser.json())
 
 const router = express.Router()
 
-let objects = [] // JSONを返す際の連想配列を格納する配列
-
 // middleware that is specific to this router
 router.use(function Auth(req, res, next) {
     //login確認処理
@@ -50,6 +48,8 @@ router.route('/')
         */
 
         const ref = db.ref("/Tree")
+        let objects = [] // JSONを返す際の連想配列を格納する配列
+
         try {
 
             const reqlocationX = req.query.locationX
