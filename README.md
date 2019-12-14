@@ -26,8 +26,10 @@
      - フロント：Xamarin.Forms
      - バック：.Net Core, Xamarin
      - ASP.NET Core
-     - Geolocator
-     - Xamarin.Forms.GoogleMaps
+     - Xamarin.Forms.GoogleMaps（地図）
+     - Xam.Plugin.SimpleAudioPlayer（音声再生）
+     - Microsoft.AspNet.WebApi.Client（Http通信）
+     - Xamarin.Essentials（振動、gpsなど）
 
 ### その他開発に使用したツール
 - Visual Studio
