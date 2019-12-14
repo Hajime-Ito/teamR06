@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cliant.FlyerFormDescriptionPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="内容の入力" 
+                   FontSize="Title"
+                   HorizontalOptions="Center"
+                   Opacity="0.7"/>
+            <Label Text="タイトル" 
+                   FontSize="Subtitle"                   
+                   Opacity="0.7"/>
+            <Entry BackgroundColor="LightBlue"
+                   VerticalOptions="Fill"/>
+            <Label Text="内容（文章）" 
+                   FontSize="Subtitle"                   
+                   Opacity="0.7"/>
+            <Editor BackgroundColor="LightBlue"
+                    VerticalOptions="FillAndExpand"/>
+            <Label Text="カテゴリ" 
+                   FontSize="Subtitle"                   
+                   Opacity="0.7"/>
+            <Picker />
+            
+            <Button x:Name="next_desc" Text="確認画面へ"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

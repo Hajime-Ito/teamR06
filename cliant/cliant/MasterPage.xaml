@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:cliant"
+             mc:Ignorable="d"
+             x:Class="cliant.MasterPage"
+             Title="Personal Organiser">
+    <StackLayout>
+        <ListView x:Name="listView" x:FieldModifier="public">
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type local:MasterItem}">
+                    <local:MasterItem Title="Home" IconSource="home.png" TargetType="{x:Type local:Home}"/>
+                    <local:MasterItem Title="FlyerCardPage" IconSource="flyercardpage.png" TargetType="{x:Type local:FlyerCardPage}"/>
+                    <local:MasterItem Title="FlyerFormPage" IconSource="flyerformpage.png" TargetType="{x:Type local:FlyerFormPage}"/>
+                    <local:MasterItem Title="PartyFormPage" IconSource="partyformpage.png" TargetType="{x:Type local:PartyFormPage}"/>
+                </x:Array>
+            </ListView.ItemsSource>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding IconSource}" />
+                            <Label Grid.Column="1" Text="{Binding Title}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

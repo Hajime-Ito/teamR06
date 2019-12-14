@@ -11,7 +11,8 @@
         "dependencies": {
           "NETStandard.Library": "2.0.3",
           "Xamarin.Essentials": "1.3.1",
-          "Xamarin.Forms": "4.3.0.908675"
+          "Xamarin.Forms": "4.3.0.908675",
+          "Xamarin.Forms.GoogleMaps": "3.3.0"
         },
         "runtime": {
           "cliant.dll": {}
@@ -57,6 +58,17 @@
             "fileVersion": "4.3.0.336"
           }
         }
+      },
+      "Xamarin.Forms.GoogleMaps/3.3.0": {
+        "dependencies": {
+          "Xamarin.Forms": "4.3.0.908675"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Xamarin.Forms.GoogleMaps.dll": {
+            "assemblyVersion": "3.0.1.0",
+            "fileVersion": "3.0.1.0"
+          }
+        }
       }
     }
   },
@@ -100,6 +112,13 @@
       "sha512": "sha512-kXrbXKJvXYF4cKjs1Jsb+pQFEnFGl0AONYSeABjgOJqN/o5Y4zC0XXQ68xiUI81PKQTuRB5F3oDom2t5ccJDZw==",
       "path": "xamarin.forms/4.3.0.908675",
       "hashPath": "xamarin.forms.4.3.0.908675.nupkg.sha512"
+    },
+    "Xamarin.Forms.GoogleMaps/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-C1wutzR7wLgUQuiG1NgArab0X02DGOKWW10+uLBUJE+Cac0+8J/TlLVqdqEl82BDGl3n71zmiLnHd5AZlrFEfw==",
+      "path": "xamarin.forms.googlemaps/3.3.0",
+      "hashPath": "xamarin.forms.googlemaps.3.3.0.nupkg.sha512"
     }
   }
 }
