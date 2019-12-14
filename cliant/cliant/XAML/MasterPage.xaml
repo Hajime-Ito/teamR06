@@ -11,10 +11,11 @@
         <ListView x:Name="listView" x:FieldModifier="public">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:MasterItem}">
-                    <local:MasterItem Title="Home" IconSource="home.png" TargetType="{x:Type local:Home}"/>
-                    <local:MasterItem Title="FlyerCardPage" IconSource="flyercardpage.png" TargetType="{x:Type local:FlyerCardPage}"/>
-                    <local:MasterItem Title="FlyerFormPage" IconSource="flyerformpage.png" TargetType="{x:Type local:FlyerFormPage}"/>
-                    <local:MasterItem Title="PartyFormPage" IconSource="partyformpage.png" TargetType="{x:Type local:PartyFormPage}"/>
+                    <local:MasterItem Title="ホーム" IconSource="home.png" TargetType="{x:Type local:Home}"/>
+                    <local:MasterItem Title="チラシ一覧" IconSource="flyercardpage.png" TargetType="{x:Type local:FlyerCardPage}"/>
+                    <local:MasterItem Title="チラシ作成" IconSource="flyerformpage.png" TargetType="{x:Type local:FlyerFormPage}"/>
+                    <local:MasterItem Title="パーティー作成" IconSource="partyformpage.png" TargetType="{x:Type local:PartyFormPage}"/>
+                    <local:MasterItem Title="TreeAnimationPage" IconSource="treeanimationpage.png" TargetType="{x:Type local:TreeAnimationPage}"/>
                 </x:Array>
             </ListView.ItemsSource>
 
