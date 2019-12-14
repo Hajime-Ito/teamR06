@@ -29,3 +29,7 @@ C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\FlyerCardPage.xaml.g.cs
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\FlyerFormPage.xaml.g.cs
 C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\FlyerFormTimePage.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\FlyerFormDescriptionPage.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\FlyerFromConfirmPage.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\PartyFormPage.xaml.g.cs
+C:\Users\b1018\source\repos\p2hacks\teamR06\cliant\cliant\obj\Debug\netstandard2.0\PartyFormTimePage.xaml.g.cs

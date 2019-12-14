@@ -15,6 +15,13 @@ namespace cliant
         public FlyerFormTimePage()
         {
             InitializeComponent();
+
+            next_desc.Clicked += Next_desc_Clicked;
+        }
+
+        private void Next_desc_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new FlyerFormDescriptionPage());
         }
     }
 }

@@ -8,17 +8,63 @@
              mc:Ignorable="d"
              x:Class="cliant.Home">
     <ContentPage.Content>
-        <StackLayout 
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill">
-            <maps:Map x:Name="map"
+        <AbsoluteLayout>
+
+            <!-- 最初に見えている画面 -->
+            <StackLayout AbsoluteLayout.LayoutFlags="All"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         Spacing="0"
+                         BackgroundColor="White"
+                         HorizontalOptions="Fill"
+                         VerticalOptions="Fill">
+                <maps:Map x:Name="map"
                       VerticalOptions="FillAndExpand"/>
-            <controls:CardView BorderColor="DarkGray"
-                               CardTitle="複合商業施設「ハコビバ」点灯式"
-                               CardDescription="12/1にJR函館駅前に開業する「ハコビバ」。ホテル、函館駅前横丁のほか、スポーツジム、コンビニ、飲食店な..."
-                               IconBackgroundColor="SlateGray"
-                               IconImageSource="user.png" 
-                               Margin="10, 0, 10, 10"/>
-        </StackLayout>
+                <StackLayout BackgroundColor="Navy">
+                    <Button Text="開く"
+                            TextColor="White"
+                            BackgroundColor="Transparent"
+                            Clicked="ToggleFlyoutButtonClicked"
+                            HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
+            </StackLayout>
+
+            <!-- 下から出てくるやつ -->
+            <Grid x:Name="flyout"
+                  AbsoluteLayout.LayoutFlags="All"
+                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                  RowSpacing="0"
+                  IsVisible="false"
+                  BackgroundColor="White" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto">
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength"
+                                        iOS="20"
+                                        Android="0"
+                                        WinPhone="0" />
+                        </RowDefinition.Height>
+                    </RowDefinition>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <BoxView Grid.Row="0"
+                         Grid.RowSpan="2"
+                         Color="Maroon"/>
+                <Button Grid.Row="1"
+                        Text="閉じる"
+                        TextColor="White"
+                        BackgroundColor="Transparent"
+                        Clicked="ToggleFlyoutButtonClicked"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand" />
+                <Label Grid.Row="2"
+                       Text="サブコンテンツ"
+                       TextColor="Black"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand" />
+            </Grid>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

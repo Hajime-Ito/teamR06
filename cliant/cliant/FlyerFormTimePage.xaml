@@ -51,7 +51,7 @@
                 <Switch Grid.Row="0" Grid.Column="1" IsToggled="true" VerticalOptions="Start"/>
             </Grid>
 
-            <Button Text="次へ"/>
+            <Button x:Name="next_desc" Text="次へ"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
