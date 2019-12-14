@@ -29,6 +29,17 @@ namespace cliant
             {KnownPaths.TreePot_View,"TreePot/View" }
         };
 
+        #region Account
+
+        /// <summary>
+        /// uidを生成します
+        /// </summary>
+        /// <returns></returns>
+        public async static Task<Success<UidOnly>> GetUid()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// ユーザー情報を更新します。
         /// </summary>
@@ -38,7 +49,7 @@ namespace cliant
         /// <returns></returns>
         public async static Task<bool> UpdateUser(double locationX, double locationY, string pid)
         {
-            var arg = new UpdateUserArg()
+            var arg = new UpdateUser()
             {
                 locationX = locationX,
                 locationY = locationY,
@@ -49,123 +60,84 @@ namespace cliant
         }
 
         /// <summary>
-        /// pidが所有するTreePotを新しく作成します。
-        /// </summary>
-        /// <param name="pid"></param>
-        /// <returns></returns>
-        public async static Task<bool> NewTreePotOwner(string pid)
-        {
-            var arg = new NewTreePotOwnerArg()
-            {
-                pid = pid
-            };
-
-            return await ServerDataManager.Post(arg, paths[KnownPaths.Tree])
-                && await ServerDataManager.Post(arg, paths[KnownPaths.TreePot]);
-        }
-
-        /// <summary>
-        /// keyで指定されたTreePotを育てます。
-        /// </summary>
-        /// <param name="treeKey"></param>
-        /// <returns></returns>
-        public async static Task<bool> GrowTreePot(string treeKey)
-        {
-            var arg = new GrowTreePotArg()
-            {
-                TreeKey = treeKey
-            };
-
-            return await ServerDataManager.Put(arg, paths[KnownPaths.TreePot]);
-        }
-
-        /// <summary>
-        /// keyで指定されたTreePotを削除します。
-        /// </summary>
-        /// <param name="treeKey"></param>
-        /// <returns></returns>
-        public async static Task<bool> RemoveTreePot(string treeKey)
-        {
-            var arg = new RemoveTreePotArg()
-            {
-                TreeKey = treeKey
-            };
-
-            return await ServerDataManager.Delete(arg, paths[KnownPaths.TreePot]);
-        }
-
-        /// <summary>
-        /// uidを取得します。
+        /// uidからpidを取得します
         /// </summary>
         /// <param name="uid"></param>
         /// <returns></returns>
-        public static Task<Success<GetUidRet[]>> GetUid()
+        public async static Task<Success<PidOnly>> GetPid(string uid)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// uidからpidを取得します。
-        /// </summary>
-        /// <param name="uid"></param>
-        /// <returns></returns>
-        public async static Task<Success<GetPidRet>> GetPid(string uid)
-        {
-            var arg = new GetPidArg()
+            var arg = new UidOnly()
             {
                 uid = uid
             };
 
-            return await ServerDataManager.Get<GetPidRet, GetPidArg>(arg, paths[KnownPaths.Account]);
+            return await ServerDataManager.Get<PidOnly, UidOnly>(arg, paths[KnownPaths.Account]);
         }
 
+        #endregion
+
+        #region TreePot
+
         /// <summary>
-        /// (locationX,locationY)周辺のTreePotを取得します。
+        /// 植木鉢セッションを開始
         /// </summary>
         /// <param name="locationX"></param>
         /// <param name="locationY"></param>
+        /// <param name="treeKey"></param>
         /// <returns></returns>
-        public async static Task<Success<GetTreePotsRet[]>> GetTreePots(double locationX, double locationY)
+        public async static Task<bool> StartPotSession(double locationX, double locationY, string treeKey)
         {
-            var arg = new GetTreePotsArg()
+            var arg = new TreePot()
             {
                 locationX = locationX,
-                locationY = locationY
+                locationY = locationY,
+                TreeKey = treeKey
             };
-
-            return await ServerDataManager.Get<GetTreePotsRet[], GetTreePotsArg>(arg, paths[KnownPaths.TreePot_View]);
+            return await ServerDataManager.Post(arg, paths[KnownPaths.TreePot]);
         }
 
-        /// <summary>
-        /// pidに対応するアカウントが作成したTreePotを取得します。
-        /// </summary>
-        /// <param name="pid"></param>
-        /// <returns></returns>
-        public async static Task<Success<GetTreePotsRet[]>> GetMyTreePots(string pid)
-        {
-            var arg = new GetMyTreePotsArg()
-            {
-                pid = pid
-            };
+        //植木鉢セッションを終了
 
-            return await ServerDataManager.Get<GetTreePotsRet[], GetMyTreePotsArg>(arg, paths[KnownPaths.TreePot]);
-        }
-
-        /// <summary>
-        /// (locationX,locationY)周辺のTreeを取得します。
-        /// </summary>
-        /// <param name="locationX"></param>
-        /// <param name="locationY"></param>
-        /// <returns></returns>
-        public async static Task<Success<GetTreesRet[]>> GetTrees(double locationX, double locationY)
+        public async static Task<bool> StartPotSession(double locationX, double locationY, string treeKey)
         {
-            var arg = new GetTreesArg()
+            var arg = new TreePot()
             {
                 locationX = locationX,
-                locationY = locationY
+                locationY = locationY,
+                TreeKey = treeKey
             };
-
-            return await ServerDataManager.Get<GetTreesRet[], GetTreesArg>(arg, paths[KnownPaths.Tree]);
+            return await ServerDataManager.Post(arg, paths[KnownPaths.TreePot]);
         }
+
+        void StopTreePotSession()
+   /TreePot DELETE
+
+   //自分の持つ植木鉢情報を取得
+   ({ MyTreePot}...) GetMyTreePot(GetMyTreePot)
+   /TreePot GET
+
+   //現在位置から、一定距離内のTreePotのリストを取得 
+   ({ TreePot}...) TreePot(LocationAndDistance)
+   /TreePot/View GET
+
+        #endregion
+
+        #region Tree
+
+        #endregion
+
+        #region Party
+
+        #endregion
+
+
+        #region Deciration
+
+        #endregion
+
+        #region HotSpot
+
+        #endregion
+
     }
 }
