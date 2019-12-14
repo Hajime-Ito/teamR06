@@ -4,36 +4,36 @@ using System.Text;
 
 namespace cliant.ServerData
 {
-    class PidOnly
+    public class PidOnly
     {
         public string pid { get; set; }
     }
 
-    class UidOnly
+    public class UidOnly
     {
         public string uid { get; set; }
     }
 
-    class TreeKeyOnly
+    public class TreeKeyOnly
     {
         public string TreeKey { get; set; }
     }
 
-    class UpdateUser
+    public class UpdateUser
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public string pid { get; set; }
     }
 
-    class TreePot
+    public class TreePot
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public string TreeKey { get; set; }
     }
 
-    class MyTreePot
+    public class MyTreePot
     {
         public string TreeKey { get; set; }
         public double locationX { get; set; }
@@ -42,21 +42,21 @@ namespace cliant.ServerData
         public string TreeName { get; set; }
     }
 
-    class GetMyTreePot {
+    public class GetMyTreePot {
         public string owner { get; set; }
         public double locationX { get; set; }
         public double locationY { get; set; }
         public double distance { get; set; }
     }
 
-    class LocationAndDistance
+    public class LocationAndDistance
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public double distance { get; set; }
     }
 
-    class MakeTree
+    public class MakeTree
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
@@ -64,7 +64,7 @@ namespace cliant.ServerData
         public string TreeName { get; set; }
     }
 
-    class TreeData
+    public class TreeData
     {
         public string TreeKey { get; set; }
         public double locationX { get; set; }
@@ -74,7 +74,7 @@ namespace cliant.ServerData
         public int point { get; set; }
     }
 
-    class PartyData
+    public class PartyData
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
@@ -86,14 +86,14 @@ namespace cliant.ServerData
         public int dueyear { get; set; }
     }
 
-    class LocationData
+    public class LocationData
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
         public int n { get; set; }
     }
 
-    class DecorationData
+    public class DecorationData
     {
         public int kind { get; set; }
         public int posX { get; set; }
@@ -103,7 +103,7 @@ namespace cliant.ServerData
         public int month { get; set; }
         public int year { get; set; }
     }
-    class AddDecoration
+    public class AddDecoration
     {
         public string TreeKey { get; set; }
         public int kind { get; set; }

@@ -11,7 +11,7 @@ using cliant.ServerData;
 
 namespace cliant
 {
-    static class AppServerManager
+    public static class AppServerManager
     {
         enum KnownPaths
         {
@@ -20,17 +20,19 @@ namespace cliant
             Account,
             TreePot_View,
             Party,
-            TreeDecoration
+            TreeDecoration,
+            HotSpot
         }
 
         static Dictionary<KnownPaths, string> paths = new Dictionary<KnownPaths, string>()
         {
-            {KnownPaths.Tree,"Tree" },
-            {KnownPaths.TreePot,"TreePot" },
-            {KnownPaths.Account,"Account" },
-            {KnownPaths.TreePot_View,"TreePot/View" },
-            {KnownPaths.Party,"Party" },
-            {KnownPaths.TreeDecoration,"TreeDecoration" }
+            {KnownPaths.Tree,"/Tree" },
+            {KnownPaths.TreePot,"/TreePot" },
+            {KnownPaths.Account,"/Account" },
+            {KnownPaths.TreePot_View,"/TreePot/View" },
+            {KnownPaths.Party,"/Party" },
+            {KnownPaths.TreeDecoration,"/TreeDecoration" },
+            {KnownPaths.HotSpot,"/HotSpot" }
         };
 
         #region Account
@@ -294,7 +296,7 @@ namespace cliant
         }
 
 
-        public async static Task<Success<DecorationData[]>> GetHotSpots(string treeKey)
+        public async static Task<Success<DecorationData[]>> GetDecoration(string treeKey)
         {
             var arg = new TreeKeyOnly()
             {
@@ -309,7 +311,7 @@ namespace cliant
 
         #region HotSpot
 
-        public async static Task<Success<LocationData[]>> GetHotSpots(double locationX, double locationY, double distance)
+        public async static Task<Success<IEnumerable<LocationData>>> GetHotSpots(double locationX, double locationY, double distance)
         {
             var arg = new LocationAndDistance()
             {
@@ -318,7 +320,7 @@ namespace cliant
                 locationY = locationY,
             };
 
-            return await ServerDataManager.Get<LocationData[], LocationAndDistance>(arg, paths[KnownPaths.Party]);
+            return await ServerDataManager.Get<IEnumerable<LocationData>, LocationAndDistance>(arg, paths[KnownPaths.HotSpot]);
         }
 
         #endregion

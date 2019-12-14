@@ -7,7 +7,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 using System.Web;
-
+using System.Net.Http.Formatting;
+using Newtonsoft.Json;
 namespace cliant
 {
     /// <summary>
@@ -35,7 +36,7 @@ namespace cliant
     /// <summary>
     /// サーバーとのやり取りをサポートするクラス
     /// </summary>
-    static class ServerDataManager
+    public static class ServerDataManager
     {
         /// <summary>
         /// Http通信のクライアント
@@ -60,13 +61,15 @@ namespace cliant
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, value);
             return response.IsSuccessStatusCode;
         }
-        public async static Task<Success<RetT>> Post<RetT,ArgT>(ArgT value, string path) where RetT : class
+        public async static Task<Success<RetT>> Post<RetT, ArgT>(ArgT value, string path) where RetT : class
         {
             HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, value);
 
             if (response.IsSuccessStatusCode)
             {
-                return new Success<RetT>(await response.Content.ReadAsAsync<RetT>(), true);
+                var jsonString = response.Content.ReadAsStringAsync();
+                jsonString.Wait();
+                return new Success<RetT>(JsonConvert.DeserializeObject<RetT>(jsonString.Result), true);
             }
 
             return new Success<RetT>(null, false);
@@ -112,7 +115,9 @@ namespace cliant
             HttpResponseMessage response = await HttpClient.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
-                return new Success<T>(await response.Content.ReadAsAsync<T>(), true);
+                var jsonString = response.Content.ReadAsStringAsync();
+                jsonString.Wait();
+                return new Success<T>(JsonConvert.DeserializeObject<T>(jsonString.Result), true);
             }
 
             return new Success<T>(null, false);
@@ -134,8 +139,9 @@ namespace cliant
             HttpResponseMessage response = await HttpClient.GetAsync($"{path}?{MakeQuery(arg)}");
             if (response.IsSuccessStatusCode)
             {
-                return new Success<RetT>(await response.Content.ReadAsAsync<RetT>(), true);
-            }
+                var jsonString = await response.Content.ReadAsStringAsync();
+                return new Success<RetT>(JsonConvert.DeserializeObject<RetT>(jsonString), true);
+            };
 
             return new Success<RetT>(null, false);
         }
