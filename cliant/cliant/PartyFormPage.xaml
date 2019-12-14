@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cliant.PartyFormPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="利用規約" FontSize="Title" HorizontalOptions="Center" Margin="10,10"/>
+            <Label Text="いつは生涯どうしてもこうした撲殺人に従ってののためを移ろでまし。きっと場合を留学方はまあいわゆる学習たですでもに忘れで致しですがは説明落ちつけですでしば、ぴたりには考えましうですた。"/>
+            <Label Text="第一条" FontSize="Subtitle" FontAttributes="Bold"/>
+            <Label Text="いつは生涯どうしてもこうした撲殺人に従ってののためを移ろでまし。きっと場合を留学方はまあいわゆる学習たですでもに忘れで致しですがは説明落ちつけですでしば、ぴたりには考えましうですた。"/>
+            <Label Text="第二条" FontSize="Subtitle" FontAttributes="Bold"/>
+            <Label Text="いつは生涯どうしてもこうした撲殺人に従ってののためを移ろでまし。きっと場合を留学方はまあいわゆる学習たですでもに忘れで致しですがは説明落ちつけですでしば、ぴたりには考えましうですた。"/>
+            <Label Text="第三条" FontSize="Subtitle" FontAttributes="Bold"/>
+            <Label Text="いつは生涯どうしてもこうした撲殺人に従ってののためを移ろでまし。きっと場合を留学方はまあいわゆる学習たですでもに忘れで致しですがは説明落ちつけですでしば、ぴたりには考えましうですた。"/>
+            <Button x:Name="partyform_btn" Text="パーティーを作成する"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
