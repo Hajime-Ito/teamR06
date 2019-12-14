@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75" />
-                <ColumnDefinition Width="300" />                
+                <ColumnDefinition Width="Auto" />                
             </Grid.ColumnDefinitions>
             <Frame IsClippedToBounds="True"
                    BorderColor="{Binding BorderColor, FallbackValue='Black'}"

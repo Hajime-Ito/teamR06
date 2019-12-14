@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:controls="clr-namespace:cliant.Controls"
              mc:Ignorable="d"
              x:Class="cliant.Home">
     <ContentPage.Content>
@@ -12,6 +13,12 @@
             VerticalOptions="Fill">
             <maps:Map x:Name="map"
                       VerticalOptions="FillAndExpand"/>
+            <controls:CardView BorderColor="DarkGray"
+                               CardTitle="複合商業施設「ハコビバ」点灯式"
+                               CardDescription="12/1にJR函館駅前に開業する「ハコビバ」。ホテル、函館駅前横丁のほか、スポーツジム、コンビニ、飲食店な..."
+                               IconBackgroundColor="SlateGray"
+                               IconImageSource="user.png" 
+                               Margin="10, 0, 10, 10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

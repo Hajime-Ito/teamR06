@@ -20,18 +20,18 @@
                                IconBackgroundColor="SlateGray"
                                IconImageSource="user.png" />
             <controls:CardView BorderColor="DarkGray"
-                               CardTitle="ひろさきナイト"
-                               CardDescription="弘前城ミス桜とお米アイドル『ライスボール』による観光ＰＲ、津軽三味線の生演奏を行..."
+                               CardTitle="クリスマスナイト・セレモニー"
+                               CardDescription="FMいるかの開局記念日であるこの日は、シンガーソングエンターテイナ..."
                                IconBackgroundColor="SlateGray"
                                IconImageSource="user.png" />
             <controls:CardView BorderColor="DarkGray"
-                               CardTitle="みなみ北海道観光DAY"
-                               CardDescription="みなみ北海道各地の魅力が大集合する、観光PRステージ。クイズ大会や各市町自慢の商品が当た..."
+                               CardTitle="カナダ・ハリファックス パネル展"
+                               CardDescription="もみの木のふるさと、函館市の姉妹都市カナダ・ハリファックス市の街並..."
                                IconBackgroundColor="SlateGray"
                                IconImageSource="user.png" />
             <controls:CardView BorderColor="DarkGray"
-                               CardTitle="ファンタスティック・イヴ"
-                               CardDescription="FMいるかの開局記念日であるこの日は、シンガーソングエンターテイナー「ハジ→」による..."
+                               CardTitle="はこだてクリスマスファンタジー メモリアルギャラリー"
+                               CardDescription="はこだてクリスマスファンタジーの歴史を写真パネルで紹介します。..."
                                IconBackgroundColor="SlateGray"
                                IconImageSource="user.png" />
         </StackLayout>
