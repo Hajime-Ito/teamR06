@@ -59,16 +59,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="XAML\Theme.xaml.cs">
-      <DependentUpon>Theme.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="XAML\ExamplePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="XAML\Theme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
