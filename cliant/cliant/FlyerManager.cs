@@ -26,10 +26,12 @@ namespace cliant
             {
                 if(!MyFlyers.Any(f => f.Id == s.FlyerKey))
                 {
+                    var sp = s.time.Split(':');
+
                     MyFlyers.Add(new FlyerData()
                     {
                         Id = s.FlyerKey,
-                        Date = new DateTime(s.year,s.month,s.date),
+                        Date = new DateTime(s.year,s.month,s.date, int.Parse(sp[0]), int.Parse(sp[1]),0),
                         Text = s.message
                     });
                 }
