@@ -11,7 +11,7 @@ namespace cliant
         string[] reqFlyerIDs;
         Dictionary<string, FlyerData> myFlyerIDsandDatas;
 
-        void SendManagerData()
+        public void SendManagerData()
         {
             string[] reqedIDs;
 
