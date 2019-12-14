@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>NEC PC-TE508HAW</SelectedDevice>
     <DefaultDevice>pixel_2_pie_9_0_api_28</DefaultDevice>
+    <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>

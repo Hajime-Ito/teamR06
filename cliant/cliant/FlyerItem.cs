@@ -4,6 +4,7 @@ using System.Text;
 
 namespace cliant
 {
+
     class FlyerItem
     {
         public string Title { get; set; }
