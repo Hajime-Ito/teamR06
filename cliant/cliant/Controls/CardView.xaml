@@ -21,24 +21,9 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="75" />
-                <ColumnDefinition Width="Auto" />                
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Frame IsClippedToBounds="True"
-                   BorderColor="{Binding BorderColor, FallbackValue='Black'}"
-                   BackgroundColor="{Binding IconBackgroundColor, FallbackValue='Gray'}"
-                   CornerRadius="38"
-                   HeightRequest="60"
-                   WidthRequest="60"
-                   HorizontalOptions="Center"
-                   HasShadow="False"
-                   VerticalOptions="Center">
-                <Image Source="{Binding IconImageSource}"
-                       Margin="-20"
-                       WidthRequest="100"
-                       HeightRequest="100"
-                       Aspect="AspectFill" />
-            </Frame>
             <Label Grid.Column="1"
                    Text="{Binding CardTitle, FallbackValue='Card Title'}"
                    FontAttributes="Bold"

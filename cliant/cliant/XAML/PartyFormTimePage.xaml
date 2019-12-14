@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="cliant.PartyFormTimePage"
+             Padding="5, 10">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <StackLayout>
+                <Label Text="パーティーの情報を入力"
+                   FontAttributes="Bold"
+                   FontSize="Title"
+                   HorizontalOptions="Center"
+                   Margin="20, 20"
+                   Opacity="0.7"/>
+
+                <Label Text="イベントのタイトル：" FontAttributes="Bold" FontSize="Subtitle" Opacity="0.7"/>
+                <Entry BackgroundColor="LightBlue"
+                   VerticalOptions="Fill"/>
+                <Label Text="開始時刻："
+                   FontAttributes="Bold"
+                   FontSize="Subtitle"
+                   Opacity="0.7"/>
+                <DatePicker Date="2019/01/01"
+                        Format="yyyy年MM月dd日"
+                        MinimumDate="2019/01/01"
+                        MaximumDate="2020/01/01"
+                        Margin="20, 0, 0, 0"/>
+                <TimePicker Time="13:00"
+                        Margin="20, 0, 0, 20"/>
+
+                <Label Text="終了時刻："
+                   FontAttributes="Bold"
+                   FontSize="Subtitle"
+                   Opacity="0.7"/>
+                <DatePicker Date="2019/01/01"
+                        Format="yyyy年MM月dd日"
+                        MinimumDate="2019/01/01"
+                        MaximumDate="2020/01/01"
+                        Margin="20, 0, 0, 0"/>
+                <TimePicker Time="13:00"
+                        Margin="20, 0, 0, 20"/>
+                <Label Text="メッセージ："
+                   FontAttributes="Bold"
+                   FontSize="Subtitle"                   
+                   Opacity="0.7"/>
+                <Editor BackgroundColor="LightBlue"
+                    VerticalOptions="FillAndExpand"/>
+                <Label Text="カテゴリ："
+                   FontAttributes="Bold"
+                   FontSize="Subtitle"                   
+                   Opacity="0.7"/>
+                <Picker />
+
+                <Button x:Name="next_desc" Text="確認画面へ"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
