@@ -14,6 +14,11 @@ namespace cliant.ServerData
         public string uid { get; set; }
     }
 
+    public class FlyerKeyOnly
+    {
+        public string FlyerKey { get; set; }
+    }
+
     public class TreeKeyOnly
     {
         public string TreeKey { get; set; }
@@ -84,9 +89,10 @@ namespace cliant.ServerData
         public int dueday { get; set; }
         public int duemonth { get; set; }
         public int dueyear { get; set; }
+        public string title { get; set; }
     }
 
-    public class LocationData
+    public class HotSpotData
     {
         public double locationX { get; set; }
         public double locationY { get; set; }
@@ -114,4 +120,35 @@ namespace cliant.ServerData
         public int month { get; set; }
         public int year { get; set; }
     }
+
+    public class AddFlyer
+    {
+        public int year { get; set; }
+        public int month { get; set; }
+        public int date { get; set; }
+        public string message { get; set; }
+        public string time { get; set; }
+        public string FlyerKey { get; set; }
+        public double locationX { get; set; }
+        public double locationY { get; set; }
+    }
+
+    public class UpdateFlyer
+    {
+        public string FlyerKey { get; set; }
+        public double locationX { get; set; }
+        public double locationY { get; set; }
+    }
+
+    public class FlyerData
+    {
+        public int year { get; set; }
+        public int month { get; set; }
+        public int date { get; set; }
+        public string message { get; set; }
+        public string time { get; set; }
+        public string FlyerKey { get; set; }
+
+    }
+
 }
