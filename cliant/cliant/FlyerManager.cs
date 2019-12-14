@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Linq;
 namespace cliant
 {
     //例外処理追加
@@ -9,38 +9,23 @@ namespace cliant
     {
         string[] myFlyerIDs;
         string[] reqFlyerIDs;
-        Dictionary<string, FlyerData> myFlyerIDsandDatas;
+        List<FlyerData> myFlyerIDsandDatas;
 
-        public void SendManagerData()
-        {
-            string[] reqedIDs;
-
-            BluetoothManager.SendIDs(myFlyerIDs);
-
-            reqedIDs = BluetoothManager.GetReqIDs();
-
-            List<FlyerData> reDatas = new List<FlyerData>();
-            foreach(KeyValuePair<string,FlyerData> p in myFlyerIDsandDatas)
-            {
-                if (Array.IndexOf(reqedIDs, p.Key) >= 0)
-                {
-                    reDatas.Add(p.Value);
-                }
-            }
-
-            FlyerData[] datas = reDatas.ToArray();
-            BluetoothManager.SendDatas(datas);
-
-        }
-
-        void GetManagerData()
+        public void GetManagerData(double locateX, double locateY, double distance)
         {
             string[] yourFlyerIDs;
-            List<string> result = new List<string>();
+            List<string> result;
+            var val = AppServerManager.GetFlyeies(locateX, locateY, distance);
+            if (val.IsSuccess)
+            {
+                result = val.Value.
+            }
+            else
+            {
+                result = new List<string>();
+            }
 
-            yourFlyerIDs = BluetoothManager.GetIDs();
-
-            foreach(string s in myFlyerIDs)
+            foreach (string s in myFlyerIDs)
             {
                 if (Array.IndexOf(yourFlyerIDs, s)<0)
                 {
