@@ -7,8 +7,11 @@ namespace cliant
 {
     enum FlyerCategory
     {
-
+        Party,
+        Shopping,
+        BigEvent
     }
+
     class FlyerData
     {
         public DateTime Date { set; get; }
@@ -17,25 +20,16 @@ namespace cliant
         public double LocationY { set; get; }
         public string LocationName { set; get; }
         public FlyerCategory Category { set; get; }
-        public Stream AttachedFile { set; get; }
-        public string ID { set; get; }
+        public string Id { set; get; }
 
-        public bool EqualsIdentity(FlyerData flyerData)
+        public bool EqualsId(FlyerData flyerData)
         {
             if (flyerData == null)
             {
                 return false;
             }
 
-            return (this.ID == flyerData.ID);
+            return (Id == flyerData.Id);
         }
-
-        void ContentUpdate()
-        {
-            throw new NotImplementedException("ContentUpdateは未実装です");
-        }
-
-
-
     }
 }
