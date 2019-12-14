@@ -6,6 +6,7 @@ bin/
 obj/
 *.userprefs
 .packages
-
+.Android.csproj
+.Android.csproj.user
 # End of https://www.gitignore.io/api/xamarinstudio
 
