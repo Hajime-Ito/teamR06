@@ -1,0 +1,53 @@
+/*
+ルートURL：https://p2hack2019-4f273.firebaseapp.com
+12/10 Hajime, Server側から今の段階で提示できること
+12/11 Hajime, Server側のリクエストとレスポンス情報を追加、必要な関数を提案
+*/
+Server WebApi 仕様書3.0
+書式：　戻り値 関数名(引数)
+# New Method
+   //植木鉢セッションを終了
+   void StopTreePotSession()
+   /TreePot DELETE
+   //自分の持つ植木鉢情報を取得
+   ({TreeKey, locationX, locationY, isNear, TreeName}...) GetMyTreePot({owner(pid), locationX, locationY, distance})
+   /TreePot GET
+   //Partyを追加
+   void PostParty(locationX, locationY, owner(pid), kind, message, dueday, duemonth, dueyear, title)
+   /Party POST
+   //Tree(実態)の作成
+   TreeKey MakeTree(locationX, locationY, owner(pid), TreeName)
+   /Tree POST  
+# Upload
+   //ユーザの情報をアップロード
+   void User(locationX, locationY, pid) 
+   /Account POST
+   //デコレーション追加
+   void NewDecoration(TreeKey,kind,posX,posY,message, date, month, year)
+   //植木鉢セッションを開始
+   void NewTreePotOwner(locationX, locationY, TreeKey) 
+   /TreePot POST
+   //植木鉢にポイントを加算
+   void GrowPotSpot(TreeKey) 
+   /Tree PUT
+# DownLoad
+   //匿名認証、これだけファイアベースから直に取得
+   uid GetUid() 
+   !/*Nul*/
+   //uidからpidを取得
+   pid GetPid(uid) 
+   /Account GET
+   //現在位置から、一定距離内のTreePotのリストを取得 
+   ({TreeKey, locationX, locationY}...) TreePot(locationX, locationY, distance) 
+   /TreePot/View GET
+   //現在位置から、サーバが計算した一定距離内のHotSpotのリストを取得
+   ({locationX, locationY}...) HotSpot(locationX, locationY, distance)
+   /HotSpot GET
+   //現在位置から、一定距離内のTreeのリストを取得
+   ({locationX, locationY, owner(pid), point, TreeKey, TreeName}...) Tree(locationX, locationY, distance) 
+   /Tree GET
+   //TreeKeyから対応するTreeのデコレーションのリストを取得
+   ({kind, posX, posY, message, date, month, year}...) Decoration(TreeKey)
+   //現在位置から、一定距離内のPartyのリストを取得
+   ({duedate, dueyear, duemonth, owner(pid), message, kind, title, locationX, locationY}...) Party(locationX, locationY, distance) 
+   /Party GET
