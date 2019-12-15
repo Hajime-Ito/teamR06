@@ -18,25 +18,15 @@
                    FontAttributes="Bold"
                    FontSize="Subtitle"
                    Opacity="0.7"/>
-            <DatePicker Date="2019/01/01"
+            <DatePicker x:Name="start_date"
+                        Date="2019/01/01"
                         Format="yyyy年MM月dd日"
                         MinimumDate="2019/01/01"
                         MaximumDate="2020/01/01"
                         Margin="20, 0, 0, 0"/>
             <TimePicker Time="13:00"
                         Margin="20, 0, 0, 20"/>
-            
-            <Label Text="終了時刻："
-                   FontAttributes="Bold"
-                   FontSize="Subtitle"
-                   Opacity="0.7"/>
-            <DatePicker Date="2019/01/01"
-                        Format="yyyy年MM月dd日"
-                        MinimumDate="2019/01/01"
-                        MaximumDate="2020/01/01"
-                        Margin="20, 0, 0, 0"/>
-            <TimePicker Time="13:00"
-                        Margin="20, 0, 0, 20"/>
+          
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>

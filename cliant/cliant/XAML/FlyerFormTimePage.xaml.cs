@@ -12,16 +12,27 @@ namespace cliant
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FlyerFormTimePage : ContentPage
     {
+        FlyerModel flyer;
+
         public FlyerFormTimePage()
         {
             InitializeComponent();
-
-            next_desc.Clicked += Next_desc_Clicked;
+            
+            next_desc.Clicked += Next_desc_Clicked;                     
         }
 
         private void Next_desc_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FlyerFormDescriptionPage());
+            if (DateTime.Now > start_date.Date)
+            {
+
+            } else
+            {
+                int year = start_date.Date.Year;
+
+                Navigation.PushAsync(new FlyerFormDescriptionPage());
+            }
+            
         }
     }
 }
