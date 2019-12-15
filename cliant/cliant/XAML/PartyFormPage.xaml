@@ -7,7 +7,7 @@
              x:Class="cliant.PartyFormPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="利用規約" FontSize="Title" HorizontalOptions="Center" Margin="10,10"/>
+            <Image Source = "https://publicdomainq.net/images/201811/25s/publicdomainq-0028727xma.jpg"/>
             <Button x:Name="partyform_btn" Text="パーティーを作成する"></Button>
         </StackLayout>
     </ContentPage.Content>

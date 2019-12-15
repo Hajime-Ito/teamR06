@@ -14,12 +14,12 @@
             <Label Text="タイトル" 
                    FontSize="Subtitle"                   
                    Opacity="0.7"/>
-            <Entry BackgroundColor="LightBlue"
+            <Entry 
                    VerticalOptions="Fill"/>
             <Label Text="内容（文章）" 
                    FontSize="Subtitle"                   
                    Opacity="0.7"/>
-            <Editor BackgroundColor="LightBlue"
+            <Editor 
                     VerticalOptions="FillAndExpand"/>
             <Label Text="カテゴリ" 
                    FontSize="Subtitle"                   

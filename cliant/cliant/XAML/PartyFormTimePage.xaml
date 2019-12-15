@@ -18,7 +18,7 @@
                    Opacity="0.7"/>
 
                 <Label Text="イベントのタイトル：" FontAttributes="Bold" FontSize="Subtitle" Opacity="0.7"/>
-                <Entry BackgroundColor="LightBlue"
+                <Entry 
                    VerticalOptions="Fill"/>
                 <Label Text="開始時刻："
                    FontAttributes="Bold"
@@ -47,7 +47,7 @@
                    FontAttributes="Bold"
                    FontSize="Subtitle"                   
                    Opacity="0.7"/>
-                <Editor BackgroundColor="LightBlue"
+                <Editor 
                     VerticalOptions="FillAndExpand"/>
                 <Label Text="カテゴリ："
                    FontAttributes="Bold"
