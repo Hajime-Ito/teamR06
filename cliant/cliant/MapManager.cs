@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Essentials;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.GoogleMaps.Helpers;
@@ -34,28 +35,29 @@ namespace cliant
             map.IsShowingUser = true;
             beforeUpdateTime = DateTime.Now;
 
-            Device.StartTimer(new TimeSpan(33), () =>
+            Task.Run(() =>
             {
-                MapUpdate();
-                return true;
+
+                Device.StartTimer(new TimeSpan(100000), () =>
+                {
+                    MapUpdate();
+                    return true;
+                });
+
             });
         }
 
         private void MapUpdate()
         {
-            if ((DateTime.Now - beforeUpdateTime).TotalMilliseconds >= 500)
-            {
-                PosUpdate();
-                UpdatePin();
-                UpdateHotSpot();
-            }
+            PosUpdate();
+            UpdatePin();
+            UpdateHotSpot();
         }
 
         public void PosUpdate() 
         {
             //gps情報を更新
             var location = Geolocation.GetLastKnownLocationAsync();
-            Map.MoveToRegion(new MapSpan(new Position(PlocationX, PlocationY), Map.VisibleRegion.LatitudeDegrees, Map.VisibleRegion.LongitudeDegrees));
             location.Wait();
             Location = location.Result;
             //サーバーへ位置情報をアップロード
