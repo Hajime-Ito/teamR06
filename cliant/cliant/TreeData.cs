@@ -27,7 +27,7 @@ namespace cliant
         }
         public List<Decoration> Decorations { set; get; }
         public int Point { set; get; }
-        public double Time { set; get; }
+        public string TreeKey { get; set; }
         public int DecoMax
         {
             get

@@ -17,7 +17,6 @@ namespace cliant
     }
     class Decoration
     {
-        public string Picture { set; get; }
         public Decotype Decotype { set; get; }
         public double LocationX { set; get; }
         public double LocationY { set; get; }
