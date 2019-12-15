@@ -56,10 +56,11 @@ namespace cliant
         /// <param name="value"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<bool> Post<T>(T value, string path)
+        public static bool Post<T>(T value, string path)
         {
-            HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, value);
-            return response.IsSuccessStatusCode;
+            var response = HttpClient.PostAsJsonAsync(path, value);
+            response.Wait();
+            return response.Result.IsSuccessStatusCode;
         }
 
         /// <summary>
@@ -71,13 +72,13 @@ namespace cliant
         /// <param name="value"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<Success<RetT>> Post<RetT, ArgT>(ArgT value, string path) where RetT : class
+        public static Success<RetT> Post<RetT, ArgT>(ArgT value, string path) where RetT : class
         {
-            HttpResponseMessage response = await HttpClient.PostAsJsonAsync(path, value);
-
-            if (response.IsSuccessStatusCode)
+            var response = HttpClient.PostAsJsonAsync(path, value);
+            response.Wait();
+            if (response.Result.IsSuccessStatusCode)
             {
-                var jsonString = response.Content.ReadAsStringAsync();
+                var jsonString = response.Result.Content.ReadAsStringAsync();
                 jsonString.Wait();
                 return new Success<RetT>(JsonConvert.DeserializeObject<RetT>(jsonString.Result), true);
             }
@@ -93,10 +94,11 @@ namespace cliant
         /// <param name="value"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<bool> Put<T>(T value, string path)
+        public static bool Put<T>(T value, string path)
         {
-            HttpResponseMessage response = await HttpClient.PutAsJsonAsync(path, value);
-            return response.IsSuccessStatusCode;
+            var response = HttpClient.PutAsJsonAsync(path, value);
+            response.Wait();
+            return response.Result.IsSuccessStatusCode;
         }
 
         /// <summary>
@@ -107,10 +109,11 @@ namespace cliant
         /// <param name="arg"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<bool> Delete<T>(T arg, string path)
+        public static bool Delete<T>(T arg, string path)
         {
-            HttpResponseMessage response = await HttpClient.DeleteAsync($"{path}?{MakeQuery(arg)}");
-            return response.IsSuccessStatusCode;
+            var response = HttpClient.DeleteAsync($"{path}?{MakeQuery(arg)}");
+            response.Wait();
+            return response.Result.IsSuccessStatusCode;
         }
 
         /// <summary>
@@ -120,12 +123,13 @@ namespace cliant
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<Success<T>> Get<T>(string path) where T : class
+        public static Success<T> Get<T>(string path) where T : class
         {
-            HttpResponseMessage response = await HttpClient.GetAsync(path);
-            if (response.IsSuccessStatusCode)
+            var response = HttpClient.GetAsync(path);
+            response.Wait();
+            if (response.Result.IsSuccessStatusCode)
             {
-                var jsonString = response.Content.ReadAsStringAsync();
+                var jsonString = response.Result.Content.ReadAsStringAsync();
                 jsonString.Wait();
                 return new Success<T>(JsonConvert.DeserializeObject<T>(jsonString.Result), true);
             }
@@ -144,13 +148,15 @@ namespace cliant
         /// <param name="value"></param>
         /// <param name="path"></param>
         /// <returns></returns>
-        public async static Task<Success<RetT>> Get<RetT, ArgT>(ArgT arg, string path) where RetT : class
+        public static Success<RetT> Get<RetT, ArgT>(ArgT arg, string path) where RetT : class
         {
-            HttpResponseMessage response = await HttpClient.GetAsync($"{path}?{MakeQuery(arg)}");
-            if (response.IsSuccessStatusCode)
+            var response = HttpClient.GetAsync($"{path}?{MakeQuery(arg)}");
+            response.Wait();
+            if (response.Result.IsSuccessStatusCode)
             {
-                var jsonString = await response.Content.ReadAsStringAsync();
-                return new Success<RetT>(JsonConvert.DeserializeObject<RetT>(jsonString), true);
+                var jsonString = response.Result.Content.ReadAsStringAsync();
+                jsonString.Wait();
+                return new Success<RetT>(JsonConvert.DeserializeObject<RetT>(jsonString.Result), true);
             };
 
             return new Success<RetT>(null, false);
