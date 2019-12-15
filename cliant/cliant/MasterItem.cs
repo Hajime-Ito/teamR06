@@ -10,6 +10,6 @@ namespace cliant
 
         public string IconSource { get; set; }
 
-        public Type TargetType { get; set; }
+        public System.Type TargetType { get; set; }
     }
 }
